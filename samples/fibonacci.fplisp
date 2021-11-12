@@ -1,0 +1,13 @@
+((lambda (rev fib)
+   (rev (fib 21 0 1 '()) '()))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x y)
+      (if (eq x '()) y
+           ((u u) (cdr x) (cons (car x) y))))))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (n a b r)
+      (if (eq n 0) (cons a r)
+           ((u u) (- n 1) b (+ a b) (cons a r)))))))
+

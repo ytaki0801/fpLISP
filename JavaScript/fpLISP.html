@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>fpLISP.js</title>
+    <meta charset="utf-8"/>
+    <script src="fpLISP.js"></script>
+  </head>
+  <body>
+    <a href="fpLISP.js">fpLISP.js</a>
+    <form name="form1">
+      <textarea id ="secodes" name="estrings" value="1" cols="80" rows="24">
+((lambda (rev fib)
+   (rev (fib 21 0 1 '()) '()))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x y)
+      (if (eq x '()) y
+           ((u u) (cdr x) (cons (car x) y))))))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (n a b r)
+      (if (eq n 0) (cons a r)
+           ((u u) (- n 1) b (+ a b) (cons a r)))))))
+</textarea>
+    </form>
+    <input type="button" onclick="rep()" value="eval">
+    <input type="button" onclick="clt()" value="clear">
+    <p>Result: <span id="span1"></span></p>
+    <script language="javascript" type="text/javascript">
+      function rep() {
+        let estrings = document.form1.estrings.value
+        estrings = estrings.replace(/\r\n|\r/g, "\n")
+        estrings = estrings.split("\n");
+        for (let i = 0, eoutput = ""; i < estrings.length; i++) {
+          if (estrings[i] != "") {
+            eoutput = eoutput + estrings[i];
+          } else {
+            document.getElementById("span1").textContent = fp_rep(eoutput);
+            eoutput = "";
+            continue;
+          }
+        }
+      }
+      function clt() {
+        document.getElementById("secodes").value = "";
+      }
+    </script>
+    <hr>
+    Copyright (C) 2021 <a href="http://nbk.bz/">TAKIZAWA Yozo</a>
+  </body>
+</html>
+
