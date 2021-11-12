@@ -7,6 +7,8 @@ This project is aimed to define a minimum specification of LISP interpreter impl
 * Special forms: `quote` `if` `lambda`
 * Built-in functions: `cons` `car` `cdr` `eq` `atom` `+` `-` `*` `/`
 
+See each language dierctory for reference implementations.
+
 ## Sample codes
 
 * Append two lists
