@@ -38,9 +38,9 @@ function fp_syn(s) {
       return x
     }
   }
-  var t = s.pop();
+  let t = s.pop();
   if (t == ")") {
-    var r = null;
+    let r = null;
     while (s.slice(-1)[0] != "(") {
       if (s.slice(-1)[0] == ".") {
         s.pop();
@@ -62,8 +62,8 @@ function fp_read(s) { return fp_syn(fp_lex(s)); }
 // S-expression output: fp_string
 
 function fp_strcons(s) {
-  var sa_r = fp_string(car(s));
-  var sd = cdr(s);
+  let sa_r = fp_string(car(s));
+  let sd = cdr(s);
   if (eq(sd, null)) {
     return sa_r;
   } else if (atom(sd)) {
@@ -116,11 +116,6 @@ function fp_assq(x, y) {
   else return fp_assq(x, cdr(y));
 }
 
-function fp_len(x) {
-  if (fp_null(x)) return 0;
-  else return 1 + fp_len(cdr(x));
-}
-
 const fp_builtins = [
   "cons", "car", "cdr", "eq", "atom", "+", "-", "*", "/"
 ];
@@ -129,11 +124,7 @@ function fp_lookup(t, a) {
   if      (eq(t, "t"))   return true;
   else if (eq(t, "nil")) return false;
   else if (fp_builtins.includes(t) || !isNaN(t)) return t;
-  else {
-    r = fp_assq(t, a);
-    if (fp_null(r)) return fp_assq(t, GENV);
-    else return r;
-  }
+  else return fp_assq(t, a);
 }
 
 function fp_eargs(v, a) {
@@ -149,8 +140,7 @@ function fp_eval(e, a) {
       return fp_eval(caddr(e), a);
     else
       return fp_eval(cadddr(e), a);
-  }
-  else if (eq(car(e), "lambda"))
+  } else if (eq(car(e), "lambda"))
     return cons(car(e), cons(cadr(e), cons(caddr(e), cons(a, null))));
   else
     return fp_apply(fp_eval(car(e), a), fp_eargs(cdr(e), a));
@@ -168,9 +158,9 @@ function fp_apply(f, v) {
     else if (eq(f, "*")) return String(Number(car(v)) * Number(cadr(v)));
     else if (eq(f, "/")) return String(Number(car(v)) / Number(cadr(v)));
   } else {
-    lvars = cadr(f);
-    lbody = caddr(f);
-    lenvs = cadddr(f);
+    const lvars = cadr(f);
+    const lbody = caddr(f);
+    const lenvs = cadddr(f);
     if (atom(lvars))
       if (fp_null(lvars)) return fp_eval(lbody, lenvs);
       else return fp_eval(lbody, fp_append(cons(cons(lvars, v), null), lenvs));
@@ -181,12 +171,11 @@ function fp_apply(f, v) {
 
 
 // REP (no Loop): fp_rep
-GENV = fp_read("()");
 function fp_rep(e) { return fp_string(fp_eval(fp_read(e), fp_read("()"))); }
 
 // Script file execution in Node.js
 if (process.argv.length == 3) {
-  src = require("fs").readFileSync(process.argv[2]).toString();
+  const src = require("fs").readFileSync(process.argv[2]).toString();
   console.log(fp_rep(src));
 }
 
