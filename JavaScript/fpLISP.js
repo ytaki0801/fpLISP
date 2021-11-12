@@ -1,5 +1,5 @@
 //
-// fpLISP.js: A LISP interpreter orienting functional programming and Pure LISP
+// fpLISP.js: fpLISP in JavaScript
 //
 // This code is licensed under CC0.
 // https://creativecommons.org/publicdomain/zero/1.0/
