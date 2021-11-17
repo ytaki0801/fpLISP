@@ -22,6 +22,7 @@ See each language dierctory for reference implementations.
       (if (eq x '()) y
           ((u u) (cdr x) (cons (car x) y))))))
  '(x y z) '(a b c))
+
 => (x y z a b c)
 ```
 
@@ -39,6 +40,7 @@ See each language dierctory for reference implementations.
     (lambda (n a b r)
       (if (eq n 0) (cons a r)
            ((u u) (- n 1) b (+ a b) (cons a r)))))))
+
 => (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
 ```
 
