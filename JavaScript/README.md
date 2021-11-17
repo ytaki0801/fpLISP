@@ -1,6 +1,6 @@
 # fpLISP in JavaScript
 
-You can execute fpLISP codes by using Web browser through the HTML file like `pfLISP.html` and by using Node.js with a fpLISP code file like the following.
+You can execute fpLISP codes by using Web browser through the HTML file like [`pfLISP.html`](https://ytaki0801.github.io/fpLISP.html) and by using Node.js with a fpLISP code file like the following.
 ```
 $ cat ../samples/append.fplisp
 ((lambda (func a b) (func (func a '()) b))
