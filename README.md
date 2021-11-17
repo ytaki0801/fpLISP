@@ -6,7 +6,7 @@ This project is aimed to define a minimum specification of LISP interpreter impl
 
 It is mostly a subset of Scheme except builtin function naming convention and lack of global environment.
 
-* Special forms: `quote`(with single quotation) `if` `lambda`(lexical scope and Lisp-1)
+* Special forms: `quote`(with single quotation) `lambda`(lexical scope and Lisp-1) `if`
 * Built-in functions: `cons` `car` `cdr` `eq` `atom` `+` `-` `*` `/`
 
 See each language dierctory for reference implementations.
