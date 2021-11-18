@@ -1,6 +1,6 @@
 # fpLISP in POSIX-conformant Shell
 
-This is derived from [`PureLISP.sh`](https://github.com/ytaki0801/PureLISP.sh) to fit the fpLISP language specification. It is POSIX conformat so you can execute fpLISP codes not only in Bash but also in dash, BusyBox ash, ksh and other POSIX shells, like the following on [busybox-w32](https://frippery.org/busybox/) in Windows 10 Command Prompt:
+This is derived from [`PureLISP.sh`](https://github.com/ytaki0801/PureLISP.sh) to fit the fpLISP language specification. It is POSIX conformat so you can execute fpLISP codes not only in Bash but also in dash, BusyBox ash, ksh and other POSIX shells, like the following on [busybox-w32](https://frippery.org/busybox/) in Windows 10 Command Prompt. Note that numbers are limited to integers.
 ```
 >type ..\samples\fibonacci.fplisp
 ((lambda (rev fib)
