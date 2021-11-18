@@ -1,0 +1,10 @@
+((lambda (assoc k al) (assoc k al))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (k al)
+      (if (eq al '()) '()
+          (if (eq (car (car al)) k) (car al)
+              ((u u) k (cdr al)))))))
+ 'Orange
+ '((Apple . 120) (Orange . 210) (Lemon . 180)))
+

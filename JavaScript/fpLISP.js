@@ -117,7 +117,7 @@ function fp_assq(x, y) {
 }
 
 const fp_builtins = [
-  "cons", "car", "cdr", "eq", "atom", "+", "-", "*", "/"
+  "cons", "car", "cdr", "eq", "atom", "+", "-", "*", "/", "%", "lt"
 ];
 
 function fp_lookup(t, a) {
@@ -157,6 +157,8 @@ function fp_apply(f, v) {
     else if (eq(f, "-")) return String(Number(car(v)) - Number(cadr(v)));
     else if (eq(f, "*")) return String(Number(car(v)) * Number(cadr(v)));
     else if (eq(f, "/")) return String(Number(car(v)) / Number(cadr(v)));
+    else if (eq(f, "%")) return String(Number(car(v)) % Number(cadr(v)));
+    else if (eq(f, "lt")) return Number(car(v)) < Number(cadr(v));
   } else {
     const lvars = cadr(f);
     const lbody = caddr(f);

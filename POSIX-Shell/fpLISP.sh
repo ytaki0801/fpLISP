@@ -70,7 +70,7 @@ fp_strcons () {
 fp_display () {
   fp_null "$1"
   case "$FPNULLR" in (t)
-    printf "nil"
+    printf "()"
   ;;(*)
     atom "$1"
     case "$ATOMR" in (t)
@@ -312,7 +312,7 @@ fp_builtins () {
     FPBUILTINSR="$1"
   ;;(cons|car|cdr|eq|atom)
     FPBUILTINSR="$1"
-  ;;(+|-|"*"|/)
+  ;;(+|-|"*"|/|%|lt)
     FPBUILTINSR="$1"
   ;;(*)
     FPBUILTINSR=notbuiltins
@@ -493,10 +493,18 @@ fp_apply () {
     car "$2"
     atom "$CARR"
     FPAPPLYR="$ATOMR"
-  ;;(+|-|"*"|/)
+  ;;(+|-|"*"|/|%)
     cadr "$2"
     car "$2"
-    FPAPPLYR="$((CARR$1$CADRR))"
+    FPAPPLYR="$(($CARR$1$CADRR))"
+  ;;(lt)
+    cadr "$2"
+    car "$2"
+    case "$(($CARR<$CADRR))" in (1)
+      FPAPPLYR=t
+    ;;(*)
+      FPAPPLYR=nil
+    ;;esac
   ;;esac
 }
 
@@ -511,7 +519,7 @@ while read fprdcd
 do
   case "$fprdcd" in ('')
     break
-  esac
+  ;;esac
   FPREADCODE="$FPREADCODE$fprdcd"
 done
 

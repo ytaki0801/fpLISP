@@ -1,0 +1,10 @@
+((lambda (modp orp x y) (modp x y orp))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x y orp)
+      (if (orp (eq y x) (lt y x))
+          ((u u) (- x y) y orp)
+          x))))
+ (lambda (a b) (if a t b))
+ 100 3)
+
