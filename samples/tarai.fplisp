@@ -1,0 +1,10 @@
+((lambda (tarai) (tarai 12 6 0))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x y z)
+      (if (lt y x)
+          ((u u) ((u u) (- x 1) y z)
+                 ((u u) (- y 1) z x)
+                 ((u u) (- z 1) x y))
+          y)))))
+
