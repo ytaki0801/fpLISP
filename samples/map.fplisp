@@ -2,12 +2,13 @@
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (f a)
-      (if (eq a '()) r
+      (if (eq a '()) '()
           (cons (f (car a))
                 ((u u) f (cdr a)))))))
- (lambda (x)
-   (- (car x)
-      (* (/ (car x) (car (cdr x)))
-            (car (cdr x)))))
- '((99 2) (99 3) (99 4) (99 5)))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x r)
+      (if (eq x '()) r
+          ((u u) (cdr x) (+ (car x) r))))))
+ '((1 2 3 4 5) (9 5) (-3 100 5) (42)))
 
