@@ -1,0 +1,13 @@
+((lambda (map1 f a) (map1 f a))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (f a)
+      (if (eq a '()) r
+          (cons (f (car a))
+                ((u u) f (cdr a)))))))
+ (lambda (x)
+   (- (car x)
+      (* (/ (car x) (car (cdr x)))
+            (car (cdr x)))))
+ '((99 2) (99 3) (99 4) (99 5)))
+
