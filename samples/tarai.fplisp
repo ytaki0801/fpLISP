@@ -1,4 +1,4 @@
-((lambda (tarai) (tarai 12 6 0))
+((lambda (tarai) (tarai 7 4 0))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y z)
