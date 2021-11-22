@@ -7,8 +7,8 @@
                 ((u u) f (cdr a)))))))
  ((lambda (u) (u u))
   (lambda (u)
-    (lambda (x r)
-      (if (eq x '()) r
-          ((u u) (cdr x) (+ (car x) r))))))
+    (lambda (x)
+      (if (eq x '()) 0
+          (+ (car x) ((u u) (cdr x)))))))
  '((1 2 3 4 5) (9 5) (-3 100 5) (42)))
 
