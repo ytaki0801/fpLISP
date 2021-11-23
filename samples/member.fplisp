@@ -1,0 +1,10 @@
+((lambda (member)
+  ((lambda (L) ((lambda x x) (member -1 L) (member 4 L) (member 'a L)))
+   '(1 2 3 4 5)))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (k vs)
+      (if (eq vs '()) '()
+          (if (eq (car vs) k) vs
+              ((u u) k (cdr vs))))))))
+
