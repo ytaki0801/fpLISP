@@ -3,8 +3,8 @@
       ((lambda x x) pattern input
        (sublis (pmatch pattern input t
                        and or assoc member sublis varp eqlist matchvar)
-               '(A Y is needed by X) assoc)))
-    '(X needs a . Y) '(John needs a big cake)))
+               '(a Y is needed by X) assoc)))
+    '(X needs a . Y) '(john needs a big cake)))
  (lambda (a b) (if a b nil))
  (lambda (a b) (if a t b))
  ((lambda (u) (u u))
