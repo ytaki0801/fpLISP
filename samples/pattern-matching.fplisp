@@ -46,7 +46,7 @@
           (cons (cons var input)
                 (if (eq bindings t) '() bindings))
           (if (eqlist input (cdr binding) and or) bindings '())))
-    (assoc var bindings)))
+    (assoc var (if (eq bindings t) '() bindings))))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (pattern input bindings 
