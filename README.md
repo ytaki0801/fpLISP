@@ -14,9 +14,9 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `cons` `car` `cdr` `eq` `atom`
 * Built-in functions for numbers
 	* `+` `-` `*` `/` `%` `lt`
-* Boolean value
+* Boolean values
 	* `t`: True
-	* `nil` `()`: False
+	* `()` or `nil`: False
 
 See each language dierctory for reference implementations.
 
