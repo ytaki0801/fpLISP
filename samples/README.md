@@ -4,8 +4,9 @@
 * `append.fplisp`: Append two lists
 * `assoc.fplisp`: Search in association list
 * `fibonacci.fplisp`: Generate Fibonacci sequence until 21th as a list
-* `map.fplist`: Execute map with one-argument function
+* `map.fplist`: Implement `map` with one-argument function
 * `quine.fplisp`: Generate quine code for fpLISP
+* `sublis.fplisp`: Emulate `sublis` of Common Lisp
 * `tarai.fplisp`: Calculate Takeuchi function as tarai(7,4,0)
 
 ## License
