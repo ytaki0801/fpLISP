@@ -1,0 +1,7 @@
+(((lambda (u) (u u))
+  (lambda (u)
+    (lambda (n a b)
+      (if (lt n 0) '()
+          (cons a ((u u) (- n 1) b (+ a b)))))))
+ 21 0 1)
+

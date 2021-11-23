@@ -1,4 +1,4 @@
-((lambda (map1 f a) (map1 f a))
+((lambda (map f a) (map f a))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (f a)

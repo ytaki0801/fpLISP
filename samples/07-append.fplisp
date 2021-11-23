@@ -1,4 +1,4 @@
-((lambda (func a b) (func (func a '()) b))
+((lambda (f a b) (f (f a '()) b))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
