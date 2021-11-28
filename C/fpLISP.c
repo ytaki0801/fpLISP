@@ -63,6 +63,10 @@ node_t cons(node_t x, node_t y)
 int eq(node_t s1, node_t s2)
 {
   if (s1 == NULL && s2 == NULL) return (1);
+  else if (s1 == NULL && (!n_cons(s2) && !strcmp(node_to_str(s2), "nil")))
+    return (1);
+  else if (s2 == NULL && (!n_cons(s1) && !strcmp(node_to_str(s1), "nil")))
+    return (1);
   else if (s1 == NULL || s2 == NULL) return (0);
   else if (n_cons(s1) || n_cons(s2)) return (0);
   else return (!strcmp(node_to_str(s1), node_to_str(s2)));
@@ -135,7 +139,7 @@ void fp_strcons(node_t s)
 {
   fp_string(car(s));
   node_t sd = cdr(s);
-  if (sd == NULL) {
+  if (eq(sd, NULL)) {
   } else if (n_strg(sd)) {
     strcat(fp_eval_retval, " . ");
     strcat(fp_eval_retval, node_to_str(sd));
@@ -293,7 +297,7 @@ node_t fp_eval(node_t e, node_t a)
       return fp_lookup(e, a);
     } else if (eq(car(e), FP_QUOTE)) {
       node_t vals = cadr(e);
-      return eq(vals, FP_NIL) ? NULL : vals;
+      return vals;
     } else if (eq(car(e), FP_IF)) {
       if (eq(fp_eval(cadr(e), a), FP_T))
         return fp_eval(caddr(e), a);
