@@ -14,6 +14,10 @@ function cdr(s) { return s[1]; }
 function eq(s1, s2) {
   if ((s1 === false && s2 === null) || (s1 === null && s2 === false))
     return true;
+  else if ((s1 === false && s2 === "nil") || (s1 === "nil" && s2 === false))
+    return true;
+  else if ((s1 === null && s2 === "nil") || (s1 === "nil" && s2 === null))
+    return true;
   else
     return s1 === s2;
 }
@@ -135,8 +139,7 @@ function fp_eargs(v, a) {
 function fp_eval(e, a) {
   if (atom(e)) return fp_lookup(e, a);
   else if (eq(car(e), "quote")) {
-      r = cadr(e);
-      return eq(r, "nil") ? false : r;
+      return cadr(e);
   } else if (eq(car(e), "if")) {
     if (fp_eval(cadr(e), a))
       return fp_eval(caddr(e), a);
