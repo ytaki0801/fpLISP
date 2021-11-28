@@ -293,7 +293,7 @@ node_t fp_eval(node_t e, node_t a)
       return fp_lookup(e, a);
     } else if (eq(car(e), FP_QUOTE)) {
       node_t vals = cadr(e);
-      return vals;
+      return eq(vals, FP_NIL) ? NULL : vals;
     } else if (eq(car(e), FP_IF)) {
       if (eq(fp_eval(cadr(e), a), FP_T))
         return fp_eval(caddr(e), a);

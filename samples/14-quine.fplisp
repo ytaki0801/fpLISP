@@ -1,2 +1,2 @@
-((lambda (x) (cons x (cons (cons (quote quote) (cons x (quote ()))) (quote ())))) (quote (lambda (x) (cons x (cons (cons (quote quote) (cons x (quote ()))) (quote ()))))))
+((lambda (x) (cons x (cons (cons (quote quote) (cons x (quote nil))) (quote nil)))) (quote (lambda (x) (cons x (cons (cons (quote quote) (cons x (quote nil))) (quote nil))))))
 

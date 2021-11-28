@@ -16,7 +16,7 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `+` `-` `*` `/` `%` `lt`
 * Boolean values
 	* `t`: True
-	* `nil` or `()`: False
+	* `nil`: False
 
 See each language dierctory for reference implementations.
 

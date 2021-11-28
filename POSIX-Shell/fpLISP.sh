@@ -70,7 +70,7 @@ fp_strcons () {
 fp_display () {
   fp_null "$1"
   case "$FPNULLR" in (t)
-    printf "()"
+    printf "nil"
   ;;(*)
     atom "$1"
     case "$ATOMR" in (t)
