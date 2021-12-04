@@ -11,7 +11,6 @@
     (cond ((and (member x NIL) (member y NIL)) #t)
 	  ((and (member x T)   (member y T)    #t))
 	  (else (eq? x y)))))
-(define (fp_atom x) (not (pair? x)))
 
 ;;;; Apply a function with arguments for a lambda expression
 ;;;; and built-in functions
@@ -20,20 +19,19 @@
 	 (if (eq? (car f) 'lambda)
 	     ; Eval body of a lambda expression in local env
 	     ; made from variables, values and closure env
-	     (let ((lvars (cadr f)) (lenvs (cadddr f)))
+	     (let ((lvars (cadr f)))
 	       (fp_eval
 		(caddr f)
-		(cond ((null? lvars) lenvs)
-		      ((pair? lvars)
-		       (append (map cons lvars v) lenvs))
-		      (else
-		       (append `(,(cons lvars v)) lenvs)))))
+		(append (cond ((null? lvars) '())
+			      ((pair? lvars) (map cons lvars v))
+			      (else `(,(cons lvars v))))
+		        (cadddr f))))
 	     #f))
 	((eq? f 'cons) (cons (car v) (cadr v)))
 	((eq? f 'car)  (car (car v)))
 	((eq? f 'cdr)  (cdr (car v)))
 	((eq? f 'eq)   (fp_eq (car v) (cadr v)))
-	((eq? f 'atom) (fp_atom (car v)))
+	((eq? f 'atom) (not (pair? (car v))))
 	((eq? f '+)    (+ (car v) (cadr v)))
 	((eq? f '-)    (- (car v) (cadr v)))
 	((eq? f '*)    (* (car v) (cadr v)))
@@ -70,14 +68,14 @@
   (fp_display (car s))
   (let ((sd (cdr s)))
     (cond ((fp_eq sd 'nil) (display ""))
-          ((fp_atom sd) (display " . ") (fp_display sd))
-	  (else (display " ") (fp_strcons sd)))))
+	  ((pair? sd) (display " ") (fp_strcons sd))
+          (else (display " . ") (fp_display sd)))))
 (define (fp_display s)
   (cond ((fp_eq s 'nil) (display 'nil))
 	((fp_eq s #t)   (display 't))
 	((fp_eq s #f)   (display 'nil))
-	((fp_atom s)    (display s))
-	(else (display "(") (fp_strcons s) (display ")"))))
+	((pair? s) (display "(") (fp_strcons s) (display ")"))
+	(else (display s))))
 
 (fp_display (fp_eval (read) '()))
 (newline)
