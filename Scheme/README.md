@@ -35,7 +35,6 @@ $ cat ../samples/12-sublis.fplisp | guile fpLISP.scm
 $ cat ../samples/12-sublis.fplisp | chibi-scheme -m chibi fpLISP.scm
 ((Jim aka John) likes Mary)
 ```
-Note that some Scheme implementations do not support the quine sample because of difference of `quote` of `quote`.
 
 ## License
 

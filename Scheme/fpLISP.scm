@@ -5,6 +5,14 @@
 ;;;; https://creativecommons.org/publicdomain/zero/1.0/
 ;;;;
 
+;;;; Define predicates in the specification of fpLISP
+(define (fp_eq x y)
+  (let ((NIL `(,#f nil ())) (T `(,#t t)))
+    (cond ((and (member x NIL) (member y NIL)) #t)
+	  ((and (member x T)   (member y T)    #t))
+	  (else (eq? x y)))))
+(define (fp_atom x) (not (pair? x)))
+
 ;;;; Apply a function with arguments for a lambda expression
 ;;;; and built-in functions
 (define (fp_apply f v)
@@ -21,16 +29,11 @@
 		      (else
 		       (append `(,(cons lvars v)) lenvs)))))
 	     #f))
-	((eq? f 'cons)
-         ; 'cons' recognize #f or 'nil as empty list just in CDR
-	 ; and #f as 'nil in CAR
-	 (let ((fp_cdr (cadr v)) (fp_car (car v)))
-	   (cons (if (eq? fp_car #f) 'nil fp_car)
-		 (if (member fp_cdr `(,#f nil)) '() fp_cdr))))
+	((eq? f 'cons) (cons (car v) (cadr v)))
 	((eq? f 'car)  (car (car v)))
 	((eq? f 'cdr)  (cdr (car v)))
-	((eq? f 'eq)   (eq? (car v) (cadr v)))
-	((eq? f 'atom) (not (pair? (car v))))
+	((eq? f 'eq)   (fp_eq (car v) (cadr v)))
+	((eq? f 'atom) (fp_atom (car v)))
 	((eq? f '+)    (+ (car v) (cadr v)))
 	((eq? f '-)    (- (car v) (cadr v)))
 	((eq? f '*)    (* (car v) (cadr v)))
@@ -39,14 +42,12 @@
 	((eq? f 'lt)   (< (car v) (cadr v)))
 	(else #f)))
 
-;;;; List of built-in function names
-(define fp_builtins '(cons car cdr eq atom + - * / % lt))
+;;;; List of built-in function and Boolean names
+(define fp_builtins '(cons car cdr eq atom + - * / % lt t nil))
 
 ;;;; Look up value for a name
 (define (fp_lookup t a)
-  (cond ((eq? t 't) #t)
-	((eq? t 'nil) #f)
-	((or (member t fp_builtins) (number? t)) t)
+  (cond ((or (member t fp_builtins) (number? t)) t)
 	(else (cdr (assq t a)))))
 
 ;;;; Eval S-expression with local environment
@@ -54,9 +55,9 @@
   (cond ((pair? e)
 	 (cond ((eq? (car e) 'quote) (cadr e))
 	       ((eq? (car e) 'if)
-		(if (fp_eval (cadr e) a)
-		    (fp_eval (caddr e) a)
-		    (fp_eval (cadddr e) a)))
+		(if (fp_eq (fp_eval (cadr e) a) 'nil)
+		    (fp_eval (cadddr e) a)
+		    (fp_eval (caddr e) a)))
 	       ((eq? (car e) 'lambda) (append e `(,a)))
 	       (else
 		(fp_apply (fp_eval (car e) a)
@@ -64,9 +65,20 @@
 			       (cdr e))))))
 	(else (fp_lookup e a))))
 
-(display
- (let ((r (fp_eval (read) '())))
-   (cond ((eq? r #t) 't)
-	 ((eq? r #f) 'nil)
-	 (else r))))
+;;;; Display S-expression by following the specification of fpLISP
+(define (fp_strcons s)
+  (fp_display (car s))
+  (let ((sd (cdr s)))
+    (cond ((fp_eq sd 'nil) (display ""))
+          ((fp_atom sd) (display " . ") (fp_display sd))
+	  (else (display " ") (fp_strcons sd)))))
+(define (fp_display s)
+  (cond ((fp_eq s 'nil) (display 'nil))
+	((fp_eq s #t)   (display 't))
+	((fp_eq s #f)   (display 'nil))
+	((fp_atom s)    (display s))
+	(else (display "(") (fp_strcons s) (display ")"))))
+
+(fp_display (fp_eval (read) '()))
 (newline)
+
