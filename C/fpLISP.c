@@ -1,5 +1,6 @@
 // PureLISP.c: fpLISP in C
 //
+// (C) 2021 TAKIZAWA Yozo
 // This code is Licensed under CC0.
 // https://creativecommons.org/publicdomain/zero/1.0/
 

@@ -1,6 +1,7 @@
 //
 // fpLISP.js: fpLISP in JavaScript
 //
+// (C) 2021 TAKIZAWA Yozo
 // This code is licensed under CC0.
 // https://creativecommons.org/publicdomain/zero/1.0/
 //

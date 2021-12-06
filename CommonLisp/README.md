@@ -1,6 +1,6 @@
-# fpLISP in Scheme
+# fpLISP in Common Lisp
 
-You can execute fpLISP codes by using a Scheme language processor like [Gauche](http://practical-scheme.net/gauche/), [GNU Guile](https://www.gnu.org/software/guile/) or [Chibi-Scheme](http://synthcode.com/wiki/chibi-scheme), as the following:
+You can execute fpLISP codes by using a Commin Lisp processor like [SBCL](http://www.sbcl.org/) or [ECL](https://common-lisp.net/project/ecl/), as the following:
 
 ```
 $ cat ../samples/12-sublis.fplisp 
@@ -28,11 +28,9 @@ $ cat ../samples/12-sublis.fplisp
  '((X . John) (Y . Mary))
  '((Jim aka X) likes Y))
 
-$ cat ../samples/12-sublis.fplisp | gosh fpLISP.scm
+$ sbcl --script fpLISP.lisp < ../samples/12-sublis.fplisp 
 ((Jim aka John) likes Mary)
-$ cat ../samples/12-sublis.fplisp | guile fpLISP.scm
-((Jim aka John) likes Mary)
-$ cat ../samples/12-sublis.fplisp | chibi-scheme -m chibi fpLISP.scm
+$ ecl --shell fpLISP.lisp < ../samples/12-sublis.fplisp 
 ((Jim aka John) likes Mary)
 ```
 

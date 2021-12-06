@@ -1,0 +1,4 @@
+$ sbcl --script fpLISP.lisp < ../samples/12-sublis.fplisp 
+((Jim aka John) likes Mary)
+ytaki@penguin:~/github/fpLISP/CommonLisp$ ecl --shell fpLISP.lisp < ../samples/12-sublis.fplisp 
+((Jim aka John) likes Mary)

@@ -57,5 +57,6 @@ See `samples` directory for more sample codes.
 
 ## License
 
+(C) 2021 TAKIZAWA Yozo
 The codes in this repository are licensed under [CC0, Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
 
