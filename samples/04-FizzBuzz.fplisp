@@ -1,4 +1,4 @@
-((lambda (and FB) (FB 50 '() and))
+((lambda (and FB) (FB 50 nil and))
  (lambda (a b) (if a b nil))
  ((lambda (u) (u u))
   (lambda (u)

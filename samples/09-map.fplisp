@@ -2,13 +2,13 @@
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (f a)
-      (if (eq a '()) '()
+      (if (eq a nil) nil
           (cons (f (car a))
                 ((u u) f (cdr a)))))))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x)
-      (if (eq x '()) 0
+      (if (eq x nil) 0
           (+ (car x) ((u u) (cdr x)))))))
  '((1 2 3 4 5) (9 5) (-3 100 5) (42)))
 

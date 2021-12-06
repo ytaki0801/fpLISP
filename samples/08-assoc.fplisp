@@ -2,7 +2,7 @@
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (k al)
-      (if (eq al '()) '()
+      (if (eq al nil) nil
           (if (eq (car (car al)) k) (car al)
               ((u u) k (cdr al)))))))
  'Orange

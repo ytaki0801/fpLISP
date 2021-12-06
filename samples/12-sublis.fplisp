@@ -3,18 +3,18 @@
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (k vs)
-      (if (eq vs '()) '()
+      (if (eq vs nil) nil
           (if (eq (car (car vs)) k)
               (car vs)
               ((u u) k (cdr vs)))))))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (al L assoc)
-      (if (eq L '()) '()
+      (if (eq L nil) nil
           (cons
             (if (atom (car L))
                 ((lambda (r)
-                   (if (eq r '())
+                   (if (eq r nil)
                        (car L) (cdr r)))
                  (assoc (car L) al))
                 ((u u) al (car L) assoc))

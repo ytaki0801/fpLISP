@@ -1,8 +1,8 @@
-((lambda (f a b) (f (f a '()) b))
+((lambda (f a b) (f (f a nil) b))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
-      (if (eq x '()) y
+      (if (eq x nil) y
           ((u u) (cdr x) (cons (car x) y))))))
  '(x y z) '(a b c))
 

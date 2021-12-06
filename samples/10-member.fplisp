@@ -1,7 +1,7 @@
 (((lambda (u) (u u))
   (lambda (u)
     (lambda (k vs)
-      (if (eq vs '()) '()
+      (if (eq vs nil) nil
           (if (eq (car vs) k) vs
               ((u u) k (cdr vs)))))))
  4 '(1 2 3 4 5))
