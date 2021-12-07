@@ -24,8 +24,8 @@
                     (fp_eval
                        (caddr f)
                        (append (cond ((null lvars) '())
-                                   ((atom lvars) `(,(cons lvars v)))
-                                   (t (mapcar 'cons lvars v)))
+                                     ((atom lvars) `(,(cons lvars v)))
+                                     (t (mapcar 'cons lvars v)))
                                (cadddr f)))))
                  (t nil)))))
 
