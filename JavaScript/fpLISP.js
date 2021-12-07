@@ -121,14 +121,39 @@ function fp_assq(x, y) {
   else return fp_assq(x, cdr(y));
 }
 
-const fp_builtins = [
-  "cons", "car", "cdr", "eq", "atom", "+", "-", "*", "/", "%", "lt"
-];
+const fp_builtins = {
+  "cons" : (v) => cons(car(v), cadr(v)),
+  "car"  : (v) => car(car(v)),
+  "cdr"  : (v) => cdr(car(v)),
+  "eq"   : (v) => eq(car(v), cadr(v)),
+  "atom" : (v) => atom(car(v)),
+  "+"    : (v) => String(Number(car(v)) + Number(cadr(v))),
+  "-"    : (v) => String(Number(car(v)) - Number(cadr(v))),
+  "*"    : (v) => String(Number(car(v)) * Number(cadr(v))),
+  "/"    : (v) => String(Number(car(v)) / Number(cadr(v))),
+  "%"    : (v) => String(Number(car(v)) % Number(cadr(v))),
+  "lt"   : (v) => Number(car(v)) < Number(cadr(v))
+};
+
+function fp_apply(f, v) {
+  if (atom(f)) {
+    return fp_builtins[f](v);
+  } else {
+    const lvars = cadr(f);
+    const lbody = caddr(f);
+    const lenvs = cadddr(f);
+    if (atom(lvars))
+      if (fp_null(lvars)) return fp_eval(lbody, lenvs);
+      else return fp_eval(lbody, fp_append(cons(cons(lvars, v), null), lenvs));
+    else
+      return fp_eval(lbody, fp_append(fp_pair(lvars, v), lenvs));
+  }
+}
 
 function fp_lookup(t, a) {
   if      (eq(t, "t"))   return true;
   else if (eq(t, "nil")) return false;
-  else if (fp_builtins.includes(t) || !isNaN(t)) return t;
+  else if (Object.keys(fp_builtins).includes(t) || !isNaN(t)) return t;
   else return fp_assq(t, a);
 }
 
@@ -150,31 +175,6 @@ function fp_eval(e, a) {
     return cons(car(e), cons(cadr(e), cons(caddr(e), cons(a, null))));
   else
     return fp_apply(fp_eval(car(e), a), fp_eargs(cdr(e), a));
-}
-
-function fp_apply(f, v) {
-  if (atom(f)) {
-    if      (eq(f, "cons")) return cons(car(v), cadr(v));
-    else if (eq(f, "car"))  return car(car(v));
-    else if (eq(f, "cdr"))  return cdr(car(v));
-    else if (eq(f, "eq"))   return eq(car(v), cadr(v));
-    else if (eq(f, "atom")) return atom(car(v));
-    else if (eq(f, "+")) return String(Number(car(v)) + Number(cadr(v)));
-    else if (eq(f, "-")) return String(Number(car(v)) - Number(cadr(v)));
-    else if (eq(f, "*")) return String(Number(car(v)) * Number(cadr(v)));
-    else if (eq(f, "/")) return String(Number(car(v)) / Number(cadr(v)));
-    else if (eq(f, "%")) return String(Number(car(v)) % Number(cadr(v)));
-    else if (eq(f, "lt")) return Number(car(v)) < Number(cadr(v));
-  } else {
-    const lvars = cadr(f);
-    const lbody = caddr(f);
-    const lenvs = cadddr(f);
-    if (atom(lvars))
-      if (fp_null(lvars)) return fp_eval(lbody, lenvs);
-      else return fp_eval(lbody, fp_append(cons(cons(lvars, v), null), lenvs));
-    else
-      return fp_eval(lbody, fp_append(fp_pair(lvars, v), lenvs));
-  }
 }
 
 
