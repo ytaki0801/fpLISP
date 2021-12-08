@@ -4,7 +4,7 @@ This project is aimed to define a minimum specification of LISP interpreter impl
 
 ## Current Language Specification
 
-It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. It means that just one S-expression is supposed to be run.
+It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. The latter means that just one nested S-expression is supposed to be run.
 
 * Special forms
 	* `lambda` with lexical scope and Lisp-1
