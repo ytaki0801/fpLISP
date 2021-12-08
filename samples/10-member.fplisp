@@ -4,5 +4,5 @@
       (if (eq vs nil) nil
           (if (eq (car vs) k) vs
               ((u u) k (cdr vs)))))))
- 4 '(1 2 3 4 5))
+ 4 (quote (1 2 3 4 5)))
 

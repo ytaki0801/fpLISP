@@ -19,6 +19,6 @@
                  (assoc (car L) al))
                 ((u u) al (car L) assoc))
             ((u u) al (cdr L) assoc))))))
- '((X . John) (Y . Mary))
- '((Jim aka X) likes Y))
+ (quote ((X . John) (Y . Mary)))
+ (quote ((Jim aka X) likes Y)))
 

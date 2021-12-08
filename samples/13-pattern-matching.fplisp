@@ -3,8 +3,8 @@
       ((lambda x x) pattern input
        (sublis (pmatch pattern input t
                        and or assoc member sublis varp eqlist matchvar)
-               '(a Y is needed by X) assoc)))
-    '(X needs a . Y) '(john needs a big cake)))
+               (quote (a Y is needed by X)) assoc)))
+    (quote (X needs a . Y)) (quote (john needs a big cake))))
  (lambda (a b) (if a b nil))
  (lambda (a b) (if a t b))
  ((lambda (u) (u u))
@@ -31,7 +31,7 @@
  (lambda (x member)
    (if (atom x)
        ((lambda (r) (if (eq r nil) nil t))
-        (member x '(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)))
+        (member x (quote (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z))))
        nil))
  ((lambda (u) (u u))
    (lambda (u)

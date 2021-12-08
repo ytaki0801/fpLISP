@@ -4,11 +4,11 @@ This is derived from [`PureLISP.sh`](https://github.com/ytaki0801/PureLISP.sh) t
 ```
 >type ..\samples\fibonacci.fplisp
 ((lambda (rev fib)
-   (rev (fib 21 0 1 '()) '()))
+   (rev (fib 21 0 1 nil) nil))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
-      (if (eq x '()) y
+      (if (eq x nil) y
            ((u u) (cdr x) (cons (car x) y))))))
  ((lambda (u) (u u))
   (lambda (u)

@@ -7,16 +7,15 @@ This project is aimed to define a minimum specification of LISP interpreter impl
 It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. It means that just one S-expression is supposed to be run.
 
 * Special forms
-	* `quote`: same as single quotation
-	* `lambda`: with lexical scope and Lisp-1
-	* `if`
+	* `lambda` with lexical scope and Lisp-1
+	* `if` `quote`
 * Built-in functions for lists
 	* `cons` `car` `cdr` `eq` `atom`
 * Built-in functions for numbers
 	* `+` `-` `*` `/` `%` `lt`
 * Boolean values
 	* `t`: true
-	* `nil`: false, also as empty set
+	* `nil`: false, also as an empty set
 
 See each language dierctory for reference implementations.
 
@@ -30,7 +29,7 @@ See each language dierctory for reference implementations.
     (lambda (x y)
       (if (eq x nil) y
           ((u u) (cdr x) (cons (car x) y))))))
- '(x y z) '(a b c))
+ (quote (x y z)) (quote (a b c)))
 
 => (x y z a b c)
 ```

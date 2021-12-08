@@ -5,6 +5,6 @@
       (if (eq al nil) nil
           (if (eq (car (car al)) k) (car al)
               ((u u) k (cdr al)))))))
- 'Orange
- '((Apple . 120) (Orange . 210) (Lemon . 180)))
+ (quote Orange)
+ (quote ((Apple . 120) (Orange . 210) (Lemon . 180))))
 

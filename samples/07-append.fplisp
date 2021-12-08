@@ -4,5 +4,5 @@
     (lambda (x y)
       (if (eq x nil) y
           ((u u) (cdr x) (cons (car x) y))))))
- '(x y z) '(a b c))
+ (quote (x y z)) (quote (a b c)))
 

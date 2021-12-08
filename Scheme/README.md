@@ -9,24 +9,24 @@ $ cat ../samples/12-sublis.fplisp
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (k vs)
-      (if (eq vs '()) '()
+      (if (eq vs nil) nil
           (if (eq (car (car vs)) k)
               (car vs)
               ((u u) k (cdr vs)))))))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (al L assoc)
-      (if (eq L '()) '()
+      (if (eq L nil) nil
           (cons
             (if (atom (car L))
                 ((lambda (r)
-                   (if (eq r '())
+                   (if (eq r nil)
                        (car L) (cdr r)))
                  (assoc (car L) al))
                 ((u u) al (car L) assoc))
             ((u u) al (cdr L) assoc))))))
- '((X . John) (Y . Mary))
- '((Jim aka X) likes Y))
+ (quote ((X . John) (Y . Mary)))
+ (quote ((Jim aka X) likes Y)))
 
 $ cat ../samples/12-sublis.fplisp | gosh fpLISP.scm
 ((Jim aka John) likes Mary)

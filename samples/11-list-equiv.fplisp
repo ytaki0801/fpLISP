@@ -1,2 +1,2 @@
-((lambda x x) 'a '(b . 2) 3)
+((lambda x x) (quote a) (quote (b . 2)) 3)
 

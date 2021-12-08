@@ -6,18 +6,18 @@ The C version of fpLISP is ISO C99 conformat so you can compile and run it not o
 >tcc fpLISP.c
 
 >type ..\samples\FizzBuzz.fplisp
-((lambda (and FB) (FB 50 '() and))
+((lambda (and FB) (FB 50 nil and))
  (lambda (a b) (if a b nil))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x r and)
       (if (eq x 0) r
           (if (and (eq (% x 3) 0) (eq (% x 5) 0))
-              ((u u) (- x 1) (cons 'FizzBuzz r) and)
+              ((u u) (- x 1) (cons (quote FizzBuzz) r) and)
               (if (eq (% x 3) 0)
-                  ((u u) (- x 1) (cons 'Fizz r) and)
+                  ((u u) (- x 1) (cons (quote Fizz) r) and)
                   (if (eq (% x 5) 0)
-                      ((u u) (- x 1) (cons 'Buzz r) and)
+                      ((u u) (- x 1) (cons (quote Buzz) r) and)
                       ((u u) (- x 1) (cons x r) and)))))))))
 
 
