@@ -14,8 +14,8 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Built-in functions for numbers
 	* `+` `-` `*` `/` `%` `lt`
 * Boolean values
-	* `t`: true
-	* `nil`: false, also as an empty set
+	* `t` for true
+	* `nil` for false and an empty set
 
 See each language dierctory for reference implementations.
 
