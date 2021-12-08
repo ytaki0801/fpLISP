@@ -16,7 +16,7 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `+` `-` `*` `/` `%` `lt`
 * Boolean values
 	* `t`: true
-	* `nil`: false
+	* `nil`: false, also as empty set
 
 See each language dierctory for reference implementations.
 
@@ -24,11 +24,11 @@ See each language dierctory for reference implementations.
 
 * Append two lists
 ```
-((lambda (func a b) (func (func a '()) b))
+((lambda (func a b) (func (func a nil) b))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
-      (if (eq x '()) y
+      (if (eq x nil) y
           ((u u) (cdr x) (cons (car x) y))))))
  '(x y z) '(a b c))
 
@@ -38,11 +38,11 @@ See each language dierctory for reference implementations.
 * Generate Fibonacci sequence until 21th
 ```
 ((lambda (rev fib)
-   (rev (fib 21 0 1 '()) '()))
+   (rev (fib 21 0 1 nil) nil))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
-      (if (eq x '()) y
+      (if (eq x nil) y
            ((u u) (cdr x) (cons (car x) y))))))
  ((lambda (u) (u u))
   (lambda (u)
