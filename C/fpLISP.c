@@ -153,7 +153,7 @@ void fp_strcons(node_t s)
 void fp_string(node_t s)
 {
   if (s == NULL) {
-    strcat(fp_eval_retval, "()");
+    strcat(fp_eval_retval, "nil");
   } else if (n_strg(s)) {
     strcat(fp_eval_retval, node_to_str(s));
   } else {
@@ -236,7 +236,7 @@ int fp_isinteger(node_t t)
 node_t fp_lookup(node_t t, node_t a)
 {
   if      (eq(t, FP_T))   return FP_T;
-  else if (eq(t, FP_NIL)) return NULL;
+  else if (eq(t, FP_NIL)) return FP_NIL;
   else if (eq(t, FP_CONS) || eq(t, FP_CAR)  || eq(t, FP_CDR)
         || eq(t, FP_EQ)   || eq(t, FP_ATOM) || eq(t, FP_ADD)
         || eq(t, FP_SUB)  || eq(t, FP_MUL)  || eq(t, FP_DIV)
