@@ -1,6 +1,6 @@
 # fpLISP in fpLISP as a Meta-Circular Evaluator
 
-This code is a fpLISP interpreter defined by fpLISP, as a Meta-Circular Evaluator, including sample fpLISP code FizzBuzz for the evaluator because fpLISP has no built-in standard input function. Please note that numbers in sample fpLILSP code must be quoted because fpLISP has no built-in number check function, too.
+This code is a fpLISP interpreter defined by fpLISP, as a Meta-Circular Evaluator, including sample fpLISP code FizzBuzz for the evaluator because fpLISP has no built-in standard input function. Please note that numbers in sample fpLISP code must be quoted because fpLISP has no built-in number check function, too.
 
 ```
 $ tail -15 fpLISP-FizzBuzz.fplisp 
