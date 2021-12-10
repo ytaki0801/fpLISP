@@ -3,6 +3,6 @@
   (lambda (u)
     (lambda (x y)
       (if (eq x nil) y
-           ((u u) (cdr x) (cons (car x) y))))))
+          ((u u) (cdr x) (cons (car x) y))))))
  (quote (a b c d e)))
 
