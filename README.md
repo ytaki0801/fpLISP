@@ -2,6 +2,10 @@
 
 This project is aimed to define a minimum specification of LISP interpreter implementations for fun, education or research of functional programming.
 
+The following ebook in Japanese is written by referring fpLISP:
+
+『[簡易LISP処理系で体験する関数型プログラミング](http://bit.ly/fpLISP-book)』([Zenn Books](https://zenn.dev/books))
+
 ## Current Language Specification
 
 It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. The latter means that just one nested S-expression is supposed to be run.
