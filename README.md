@@ -12,14 +12,16 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 
 * Special forms
 	* `lambda` with lexical scope and Lisp-1
-	* `if` `quote`
-* Built-in functions for lists
-	* `cons` `car` `cdr` `eq` `atom`
-* Built-in functions for numbers
-	* `+` `-` `*` `/` `%` `lt`
+	* `if` as conditional operator
+        * `quote`
+* Built-in functions for list and number processing
+	* `cons` `car` `cdr` `atom` for lists
+	* `+` `-` `*` `/` `%` for numbers
+        * `lt` as < for numbers
+        * `eq` as = for both lists and numbers
 * Boolean values
-	* `t` for true
-	* `nil` for false and an empty set
+	* `t` as true
+	* `nil` as false and empty set
 
 See each language dierctory for reference implementations.
 
