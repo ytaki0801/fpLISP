@@ -1,8 +1,9 @@
 ((lambda (append map eval e a)
    (eval e
-     (quote ((cons . cons) (car . car) (cdr . cdr) (eq . eq) (atom . atom)
-             (+ . +) (- . -) (* . *) (/ . /) (% . %) (lt . lt)
-             (t . t) (nil . nil)))
+     (append a
+       (quote ((cons . cons) (car . car) (cdr . cdr) (eq . eq) (atom . atom)
+               (+ . +) (- . -) (* . *) (/ . /) (% . %) (lt . lt)
+               (t . t) (nil . nil))))
      append map))
  ((lambda (u) (u u))
   (lambda (u)
