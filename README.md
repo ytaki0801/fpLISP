@@ -13,7 +13,7 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Special forms
 	* `lambda` with lexical scope and Lisp-1
 	* `if` as conditional operator
-        * `quote`
+	* `quote`
 * Built-in functions for list and number processing
 	* `cons` `car` `cdr` `atom` for lists
 	* `+` `-` `*` `/` `%` for numbers
