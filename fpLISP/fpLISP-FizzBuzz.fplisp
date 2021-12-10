@@ -12,16 +12,13 @@
  ((lambda (u) (u u))
   (lambda (u)
     (lambda fv
-      (if (eq (cdr (cdr fv)) nil)
-          (if (eq (car (cdr fv)) nil) nil
-              (cons ((car fv) (car (car (cdr fv))))
-                    ((u u) (car fv) (cdr (car (cdr fv))))))
-          (if (eq (car (cdr fv)) nil) nil
-          (if (eq (car (cdr (cdr fv))) nil) nil
-              (cons ((car fv) (car (car (cdr fv)))
-                              (car (car (cdr (cdr fv)))))
-                    ((u u) (car fv)
-                     (cdr (car (cdr fv))) (cdr (car (cdr (cdr fv))))))))))))
+      ((lambda (f a b)
+        (if (eq a nil) nil
+        (if (eq b nil)
+            (cons (f (car a)) ((u u) f (cdr a)))
+            (cons (f (car a) (car (car b)))
+                  ((u u) f (cdr a) (cdr (car b)))))))
+       (car fv) (car (cdr fv)) (cdr (cdr fv))))))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (e a append map)
