@@ -109,10 +109,7 @@ function fp_pair(x, y) {
   if (fp_null(x) || fp_null(y)) return null;
   else if (!atom(x) && !atom(y))
     return cons(cons(car(x), car(y)), fp_pair(cdr(x), cdr(y)));
-  else if (atom(x))
-    return cons(cons(x, y), null);
-  else
-    return null;
+  else return null;
 }
 
 function fp_assq(x, y) {

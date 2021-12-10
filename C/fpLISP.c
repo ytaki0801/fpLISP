@@ -204,7 +204,6 @@ node_t fp_pair(node_t x, node_t y)
   if (fp_null(x) || fp_null(y)) return NULL;
   else if (!atom(x) && !atom(y))
     return cons(cons(car(x), car(y)), fp_pair(cdr(x), cdr(y)));
-  else if (atom(x)) return cons(cons(x, y), NULL);
   else return NULL;
 }
 

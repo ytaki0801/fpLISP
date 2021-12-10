@@ -279,14 +279,7 @@ fp_pair () {
       cons "$CONSR" "$FPPAIRR"
       FPPAIRR="$CONSR"
     ;;(*)
-      atom "$1"
-      case "$ATOMR" in (t)
-        cons "$1" "$2"
-        cons "$CONSR" nil
-        FPPAIRR="$CONSR"
-      ;;(*)
-        FPPAIRR=nil
-      ;;esac
+      FPPAIRR=nil
     ;;esac
   ;;esac
 }
