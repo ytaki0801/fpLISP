@@ -1,0 +1,18 @@
+((lambda (fold)
+   ((lambda x x)
+    (fold cons (quote (a b c)) (quote (x y z)))
+    (fold (lambda (x r) (cons (fold (lambda (x r) (+ x r)) 0 x) r))
+          nil (quote ((1 2 3 4 5) (9 5) (-3 100 5) (42))))
+    (fold (lambda (x y r) (cons (cons x y) r)) nil
+          (quote (a b c)) (quote (10 20 30)))))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda fv
+      ((lambda (f i a b)
+         (if (eq a nil) i
+         (if (eq b nil)
+             (f (car a) ((u u) f i (cdr a)))
+             (f (car a) (car (car b))
+                ((u u) f i (cdr a) (cdr (car b)))))))
+       (car fv) (car (cdr fv)) (car (cdr (cdr fv))) (cdr (cdr (cdr fv))))))))
+
