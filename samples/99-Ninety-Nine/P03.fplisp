@@ -1,0 +1,8 @@
+(((lambda (u) (u u))
+  (lambda (u)
+    (lambda (l k)
+      (if (eq l nil) nil
+      (if (eq k 1) (car l)
+          ((u u) (cdr l) (- k 1)))))))
+ (quote (a b c d e)) 3)
+

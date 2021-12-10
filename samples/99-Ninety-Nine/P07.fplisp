@@ -1,0 +1,17 @@
+((lambda (append flatten x) (flatten x append))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x y)
+      (if (eq x nil) y
+          (cons (car x) ((u u) (cdr x) y))))))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda (x append)
+      (if (eq x nil) nil
+          ((lambda (e r)
+             (if (atom e)
+                 (append (cons e nil) ((u u) r append))
+                 (append ((u u) e append) ((u u) r append))))
+           (car x) (cdr x))))))
+ (quote (a (b (c d) e))))
+

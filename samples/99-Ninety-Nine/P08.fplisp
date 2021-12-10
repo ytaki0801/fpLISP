@@ -1,0 +1,10 @@
+(((lambda (u) (u u))
+  (lambda (u)
+    (lambda (l)
+      (if (eq l nil) nil
+      (if (eq (cdr l) nil) l
+      (if (eq (car l) (car (cdr l)))
+          ((u u) (cdr l))
+          (cons (car l) ((u u) (cdr l)))))))))
+ (quote (a a a a b c c a a d e e e e)))
+
