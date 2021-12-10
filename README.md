@@ -17,8 +17,8 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Built-in functions for list and number processing
 	* `cons` `car` `cdr` `atom` for lists
 	* `+` `-` `*` `/` `%` for numbers
-        * `lt` as < for numbers
-        * `eq` as = for both lists and numbers
+	* `lt` as < for numbers
+	* `eq` as = for both lists and numbers
 * Boolean values
 	* `t` as true
 	* `nil` as false and empty set
