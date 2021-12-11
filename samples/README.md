@@ -14,7 +14,8 @@
 * `12-sublis.fplisp`: Emulate `sublis` of Common Lisp
 * `13-pattern-matching.fplisp`: Demonstrate for pattern matching
 * `14-quine.fplisp`: Generate the quine code for fpLISP
-* `15-fold.fplisp`: append, reverse, map or search by foldr in Haskell
+* `15-foldr.fplisp`: append, reverse, map and filter by foldr
+* `16-foldl.fplisp`: append, reverse, map and filter by foldl
 
 * `99-Ninety-Nine`: Ninety-Nine Problems derived from [L-99](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html)
 

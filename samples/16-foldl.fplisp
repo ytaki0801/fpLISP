@@ -1,0 +1,25 @@
+((lambda (foldl)
+   ((lambda x x)
+    (foldl (lambda (r c) (cons c r)) (quote (a b c))
+           (foldl (lambda (r c) (cons c r)) nil (quote (x y z))))
+    (foldl (lambda (r c) (cons c r)) nil (quote (a b c d e)))
+    (foldl (lambda (r c) (cons c r)) nil
+           (foldl (lambda (r c) (cons (foldl (lambda (r c) (+ c r)) 0 c) r))
+                  nil (quote ((1 2 3 4 5) (9 5) (-3 100 5) (42)))))
+    (foldl (lambda (r c) (cons c r)) nil
+           (foldl (lambda (r c1 c2) (cons (cons c1 c2) r)) nil
+                  (quote (a b c)) (quote (10 20 30))))
+    (foldl (lambda (r c) (cons c r)) nil
+           (foldl (lambda (r c) (if (lt c 0) (cons c r) r)) nil
+                  (quote (1 2 -3 -4 5 6 -7 8 9))))))
+ ((lambda (u) (u u))
+  (lambda (u)
+    (lambda fv
+      ((lambda (f i a b)
+         (if (eq a nil) i
+         (if (eq b nil)
+             ((u u) f (f i (car a)) (cdr a))
+             ((u u) f (f i (car a) (car (car b)))
+                      (cdr a) (cdr (car b))))))
+       (car fv) (car (cdr fv)) (car (cdr (cdr fv))) (cdr (cdr (cdr fv))))))))
+
