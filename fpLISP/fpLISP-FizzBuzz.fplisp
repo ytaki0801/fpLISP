@@ -14,11 +14,7 @@
       (car fv) (car (cdr fv)) (car (cdr (cdr fv))) (cdr (cdr (cdr fv)))))))
  ((lambda (u) (u u)) (lambda (u)
     (lambda (e a fold)
-      (if (atom e)
-          (((lambda (u) (u u)) (lambda (u)
-              (lambda (v)
-                (if (eq v nil) nil
-                (if (eq e (car (car v))) (cdr (car v)) ((u u) (cdr v))))))) a)
+      (if (atom e) (fold (lambda (c r) (if (eq (car c) e) (cdr c) r)) nil a)
       (if (eq (car e) (quote quote)) (car (cdr e))
       (if (eq (car e) (quote if))
           (if ((u u) (car (cdr e)) a fold)
