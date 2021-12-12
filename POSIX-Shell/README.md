@@ -18,7 +18,7 @@ It is POSIX conformat so you can execute fpLISP codes not only in Bash but also 
 
 >
 ```
-You can also run the fpLISP.sh in [Termux](https://termux.com/) or [TermOne Plus](https://termoneplus.com/) on Android which has sh and curl by default, like the following.
+You can also run the fpLISP.sh in [Termux](https://termux.com/) or [TermOne Plus](https://termoneplus.com/) on Android which has `sh` and `curl` by default, like the following.
 ```
 $ curl -sO https://raw.githubusercontent.com/ytaki0801/fpLISP/master/POSIX-Shell/fpLISP.sh
 $ sh fpLISP.sh
