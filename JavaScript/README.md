@@ -2,8 +2,8 @@
 
 You can execute fpLISP codes by using Web browser through the HTML file like [`pfLISP.html`](https://ytaki0801.github.io/fpLISP.html) and by using Node.js with a fpLISP code file like the following.
 ```
-$ cat ../samples/append.fplisp
-((lambda (func a b) (func (func a nil) b))
+$ cat ../samples/07-append.fplisp
+((lambda (f a b) (f (f a nil) b))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)

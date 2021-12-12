@@ -1,11 +1,11 @@
 # fpLISP in C
 
-The C version of fpLISP is ISO C99 conformat so you can compile and run it not only by GCC on UNIX but also [TCC](https://bellard.org/tcc/) on Windows, like the following in Windows 10 Command Prompt.
+The C version of fpLISP is ISO C99 conformat so you can compile and run it not only by GCC on UNIX but also [TCC](https://bellard.org/tcc/) on Windows, like the following in Windows 10 Command Prompt. Note that numbers are limited to integers, and EOF code is needed to evaluate after just one S-expression.
 
 ```
 >tcc fpLISP.c
 
->type ..\samples\FizzBuzz.fplisp
+>type ..\samples\10-FizzBuzz.fplisp
 ((lambda (and FB) (FB 50 nil and))
  (lambda (a b) (if a b nil))
  ((lambda (u) (u u))
@@ -26,7 +26,6 @@ The C version of fpLISP is ISO C99 conformat so you can compile and run it not o
 
 >
 ```
-Note that numbers are limited to integers, and EOF code is needed to evaluate after just one S-expression.
 
 ## License
 

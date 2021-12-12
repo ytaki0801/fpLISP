@@ -1,27 +1,21 @@
 # fpLISP in POSIX-conformant Shell
 
-This is derived from [`PureLISP.sh`](https://github.com/ytaki0801/PureLISP.sh) to fit the fpLISP language specification. It is POSIX conformat so you can execute fpLISP codes not only in Bash but also in dash, BusyBox ash, ksh and other POSIX shells, like the following on [busybox-w32](https://frippery.org/busybox/) in Windows 10 Command Prompt.
+This is derived from [`PureLISP.sh`](https://github.com/ytaki0801/PureLISP.sh) to fit the fpLISP language specification. It is POSIX conformat so you can execute fpLISP codes not only in Bash but also in dash, BusyBox ash, ksh and other POSIX shells, like the following on [busybox-w32](https://frippery.org/busybox/) in Windows 10 Command Prompt. Note that numbers are limited to integers, and just one blank line is needed to evaluate just one S-expression.
 ```
->type ..\samples\fibonacci.fplisp
-((lambda (rev fib)
-   (rev (fib 21 0 1 nil) nil))
- ((lambda (u) (u u))
+>type ..\samples\03-fibonacci.fplisp
+(((lambda (u) (u u))
   (lambda (u)
-    (lambda (x y)
-      (if (eq x nil) y
-           ((u u) (cdr x) (cons (car x) y))))))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (n a b r)
-      (if (eq n 0) (cons a r)
-           ((u u) (- n 1) b (+ a b) (cons a r)))))))
+    (lambda (n a b)
+      (if (lt n 0) nil
+          (cons a ((u u) (- n 1) b (+ a b)))))))
+ 21 0 1)
 
 
 >busybox sh fpLISP.sh < ..\samples\fibonacci.fplisp
 (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
+
 >
 ```
-Note that numbers are limited to integers, and just one blank line is needed to evaluate just one S-expression.
 
 ## License
 

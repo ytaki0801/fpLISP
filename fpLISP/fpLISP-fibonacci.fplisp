@@ -1,17 +1,11 @@
 ((lambda (eval)
    (eval (quote
      (((lambda (u) (u u))
-         (lambda (u)
-           (lambda (x r)
-             (if (eq x (quote 0)) r
-             (if (eq (% x (quote 15)) (quote 0))
-                 ((u u) (- x (quote 1)) (cons (quote FizzBuzz) r))
-             (if (eq (% x (quote 3)) (quote 0))
-                 ((u u) (- x (quote 1)) (cons (quote Fizz) r))
-             (if (eq (% x (quote 5)) (quote 0))
-                 ((u u) (- x (quote 1)) (cons (quote Buzz) r))
-                 ((u u) (- x (quote 1)) (cons x r)))))))))
-        (quote 50) nil)
+       (lambda (u)
+         (lambda (n a b)
+           (if (lt n (quote 0)) nil
+               (cons a ((u u) (- n (quote 1)) b (+ a b)))))))
+      (quote 21) (quote 0) (quote 1))
      ) nil))
  (lambda (e a)
    ((lambda (fold)
