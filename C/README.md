@@ -35,7 +35,7 @@ fpLISP-(cpu)-(kernel) has been downloaded.
 $ ./fpLISP-(cpu)-(kernel)
 (cons 10 20)
 [Ctrl + D] (10 . 20)
-$ curl -O https://raw.githubusercontent.com/ytaki0801/fpLISP/master/samples/03-fibonacci.fplisp | ./fpLISP-(cpu)-(kernel)
+$ curl -s https://raw.githubusercontent.com/ytaki0801/fpLISP/master/samples/03-fibonacci.fplisp | ./fpLISP-(cpu)-(kernel)
 (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
 ```
 
