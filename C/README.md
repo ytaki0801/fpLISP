@@ -27,7 +27,7 @@ This fpLISP in C is ISO C99 conformat so you can compile and run it not only by 
 
 >
 ```
-And you can run a fpLISP binary in this repository on an Android x86_64 or aarch64 in [Termux](https://termux.com/) or [TermOne Plus](https://termoneplus.com/) as the following:
+And you can run a fpLISP binary in this repository on an Android in [Termux](https://termux.com/) or [TermOne Plus](https://termoneplus.com/) as the following:
 ```
 $ curl -O https://raw.githubusercontent.com/ytaki0801/fpLISP/master/C/download-fpLISP-bin.sh
 $ sh download-fpLISP-bin.sh
