@@ -27,8 +27,16 @@ This fpLISP in C is ISO C99 conformat so you can compile and run it not only by 
 
 >
 ```
-And you can run a fpLISP binary in this repository on an Android x86_64 or aarch64 machine in [Termux]() or [TermOne Plus]() as the following:
+And you can run a fpLISP binary in this repository on an Android x86_64 or aarch64 in [Termux](https://termux.com/) or [TermOne Plus](https://termoneplus.com/) as the following:
 ```
+$ curl -O https://raw.githubusercontent.com/ytaki0801/fpLISP/master/C/download-fpLISP-bin.sh
+$ sh download-fpLISP-bin.sh
+fpLISP-(cpu)-(kernel) has been downloaded.
+$ ./fpLISP-(cpu)-(kernel)
+(cons 10 20)
+[Ctrl + D] (10 . 20)
+$ curl -O https://raw.githubusercontent.com/ytaki0801/fpLISP/master/samples/03-fibonacci.fplisp | ./fpLISP-(cpu)-(kernel)
+(0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
 ```
 
 ## License
