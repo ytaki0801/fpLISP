@@ -24,7 +24,7 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 
 ## Sample codes
 
-fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur including tail-call. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
+fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
 
 * Append two lists
 ```
