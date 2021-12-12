@@ -35,9 +35,9 @@ $ head -10 fpLISP-fibonacci.fplisp
       (quote 21) (quote 0) (quote 1))
      ) nil))
  (lambda (e a)
-lucifer1$ nodejs ../JavaScript/fpLISP.js fpLISP-fibonacci.fplisp 
+$ nodejs ../JavaScript/fpLISP.js fpLISP-fibonacci.fplisp 
 (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
-lucifer1$ gosh ../Scheme/fpLISP.scm < fpLISP-fibonacci.fplisp 
+$ gosh ../Scheme/fpLISP.scm < fpLISP-fibonacci.fplisp 
 (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
 ```
 
