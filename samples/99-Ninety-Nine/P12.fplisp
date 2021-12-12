@@ -1,0 +1,24 @@
+((lambda (dec1 append decode)
+   (decode
+     (quote
+      ((4 a) b (2 c) (2 a) d (4 e)))
+     dec1 append))
+ ((lambda (u) (u u))
+  (lambda (u) (lambda (n c r)
+    (if (eq n 0) r
+        ((u u) (- n 1) c (cons c r))))))
+ ((lambda (u) (u u))
+  (lambda (u) (lambda (a b)
+    (if (eq a nil) b
+        (cons (car a) ((u u) (cdr a) b))))))
+ ((lambda (u) (u u))
+  (lambda (u) (lambda (e dec1 append)
+    (if (eq e nil) nil
+        (append
+          (if (atom (car e))
+              (dec1 1 (car e) nil)
+              (dec1
+                (car (car e))
+                (car (cdr (car e))) nil))
+          ((u u) (cdr e) dec1 append)))))))
+
