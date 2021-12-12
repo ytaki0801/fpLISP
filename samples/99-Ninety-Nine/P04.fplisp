@@ -1,7 +1,6 @@
-((lambda (length s)
-   (length s))
+((lambda (length)
+   (length (quote (a b c d e))))
  ((lambda (u) (u u)) (lambda (u) (lambda (l)
     (if (eq l nil) 0
-        (+ 1 ((u u) (cdr l)))))))
- (quote (a b c d e)))
+        (+ 1 ((u u) (cdr l))))))))
 

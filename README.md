@@ -10,9 +10,10 @@ The following ebook in Japanese is written by referring fpLISP:
 
 It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. The latter means that just one nested S-expression is supposed to be run.
 
+* S-expressions are accepted with parenthesis enclosing, space separating and dot notation for cdr of conscells in quoting lists and displaying values.
 * Special forms
-	* `lambda` with lexical scope and Lisp-1
-	* `if` as conditional operator
+	* `lambda` with lexical scope and Lisp-1. Atom variable is accepted to implement variable number of arguments and list variable with dot notation is not accepted.
+	* `if` as conditional operator. The false-clause must be provided.
 	* `quote`
 * Built-in functions for list and number processing
 	* `cons` `car` `cdr` `atom` for lists
@@ -27,9 +28,11 @@ See each language dierctory for reference implementations.
 
 ## Sample codes
 
+fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur including tail-call. The following sample codes are using U combinators.
+
 * Append two lists
 ```
-((lambda (func a b) (func (func a nil) b))
+((lambda (f a b) (f (f a nil) b))
  ((lambda (u) (u u))
   (lambda (u)
     (lambda (x y)
@@ -42,12 +45,15 @@ See each language dierctory for reference implementations.
 
 * Generate Fibonacci sequence until 21th
 ```
-(((lambda (u) (u u))
-  (lambda (u)
-    (lambda (n a b)
-      (if (lt n 0) nil
-          (cons a ((u u) (- n 1) b (+ a b)))))))
- 21 0 1)
+((lambda (fibonacci)
+   (fibonacci 21))
+ (lambda (n)
+   (((lambda (u) (u u))
+     (lambda (u)
+       (lambda (n a b)
+         (if (lt n 0) nil
+             (cons a ((u u) (- n 1) b (+ a b)))))))
+    n 0 1)))
 
 => (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
 ```

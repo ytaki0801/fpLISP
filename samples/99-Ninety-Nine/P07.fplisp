@@ -1,14 +1,14 @@
-((lambda (append my-flatten x)
-   (my-flatten x append))
- ((lambda (u) (u u)) (lambda (u) (lambda (x y)
-    (if (eq x nil) y
-        (cons (car x) ((u u) (cdr x) y))))))
- ((lambda (u) (u u)) (lambda (u) (lambda (x append)
-    (if (eq x nil) nil
-        ((lambda (e r)
-           (if (atom e)
-               (append (cons e nil) ((u u) r append))
-               (append ((u u) e append) ((u u) r append))))
-         (car x) (cdr x))))))
- (quote (a (b (c d) e))))
+((lambda (flatten)
+   (flatten (quote (a (b (c d) e)))))
+ (lambda (s)
+   ((lambda (append)
+      (((lambda (u) (u u)) (lambda (u) (lambda (s)
+          (if (eq s nil) nil
+              ((lambda (e r)
+                 (if (atom e)
+                     (append (cons e nil) ((u u) r))
+                     (append ((u u) e) ((u u) r))))
+               (car s) (cdr s)))))) s))
+    ((lambda (u) (u u)) (lambda (u) (lambda (x y)
+       (if (eq x nil) y (cons (car x) ((u u) (cdr x) y)))))))))
 

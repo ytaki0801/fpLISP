@@ -1,9 +1,7 @@
-((lambda (my-but-last s)
-   (my-but-last s))
+((lambda (my-but-last)
+   (my-but-last (quote (a b c d))))
  ((lambda (u) (u u)) (lambda (u) (lambda (l)
     (if (eq l nil) nil
     (if (eq (cdr l) nil) nil
-    (if (eq (cdr (cdr l)) nil) l
-        ((u u) (cdr l))))))))
- (quote (a b c d)))
+    (if (eq (cdr (cdr l)) nil) l ((u u) (cdr l)))))))))
 
