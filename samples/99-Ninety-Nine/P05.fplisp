@@ -1,7 +1,6 @@
-(((lambda (u) (u u))
-  (lambda (u)
-    (lambda (x r)
-      (if (eq x nil) r
-          ((u u) (cdr x) (cons (car x) r))))))
- (quote (a b c d e)) nil)
+((lambda (reverse s)
+   (reverse s nil))
+ ((lambda (u) (u u)) (lambda (u) (lambda (x r)
+    (if (eq x nil) r ((u u) (cdr x) (cons (car x) r))))))
+ (quote (a b c d e)))
 

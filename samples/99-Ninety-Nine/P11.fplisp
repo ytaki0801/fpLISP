@@ -1,34 +1,23 @@
-((lambda (pega tira length encode l) (encode l pega tira length))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (l)
-      (if (eq l nil) nil
-      (if (eq (cdr l) nil) l
-      (if (eq (car l) (car (cdr l)))
-          (cons (car l) ((u u) (cdr l)))
-          ((lambda x x) (car l))))))))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (l)
-      (if (eq l nil) nil
-      (if (eq (cdr l) nil) nil
-      (if (eq (car l) (car (cdr l)))
-          ((u u) (cdr l))
-          (cdr l)))))))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (l)
-      (if (eq l nil) 0
-          (+ 1 ((u u) (cdr l)))))))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (l pega tira length)
-      (if (eq l nil) nil
-          ((lambda (pl tl)
-             (if (eq (length pl) 1)
-                 (cons (car l) ((u u) (tira l) pega tira length))
-                 (cons ((lambda x x) (length (pega l)) (car l))
-                       ((u u) (tira l) pega tira length))))
-           (pega l) (tira l))))))
- (quote (a a a a b c c a a d e e e e)))
+((lambda (encode-modified)
+   (encode-modified (quote (a a a a b c c a a d e e e e))))
+ ((lambda (u) (u u)) (lambda (u) (lambda (l)
+    (if (eq l nil) nil
+        ((lambda (length pega tira)
+           (if (eq (length (pega l)) 1)
+               (cons (car l) ((u u) (tira l)))
+               (cons ((lambda x x) (length (pega l)) (car l))
+                     ((u u) (tira l)))))
+         ((lambda (u) (u u)) (lambda (u) (lambda (l)
+            (if (eq l nil) 0 (+ 1 ((u u) (cdr l)))))))
+         ((lambda (u) (u u)) (lambda (u) (lambda (l)
+            (if (eq l nil) nil
+            (if (eq (cdr l) nil) l
+            (if (eq (car l) (car (cdr l)))
+                (cons (car l) ((u u) (cdr l)))
+                ((lambda x x) (car l))))))))
+         ((lambda (u) (u u)) (lambda (u) (lambda (l)
+            (if (eq l nil) nil
+            (if (eq (cdr l) nil) nil
+            (if (eq (car l) (car (cdr l)))
+                ((u u) (cdr l)) (cdr l)))))))))))))
 

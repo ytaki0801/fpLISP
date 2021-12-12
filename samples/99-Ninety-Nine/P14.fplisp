@@ -1,0 +1,5 @@
+((lambda (dupli)
+   (dupli (quote (a b c c d))))
+ ((lambda (u) (u u)) (lambda (u) (lambda (s)
+    (if (eq s nil) nil (cons (car s) (cons (car s) ((u u) (cdr s)))))))))
+

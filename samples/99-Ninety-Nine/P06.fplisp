@@ -1,18 +1,14 @@
-((lambda (rev and or samelp x) (samelp x (rev x nil) and or))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (x r)
-      (if (eq x nil) r
-          ((u u) (cdr x) (cons (car x) r))))))
+((lambda (rev and or palindrome x)
+   (palindrome x (rev x nil) and or))
+ ((lambda (u) (u u)) (lambda (u) (lambda (x r)
+    (if (eq x nil) r
+        ((u u) (cdr x) (cons (car x) r))))))
  (lambda (c1 c2) (if c1 c2 nil))
  (lambda (c1 c2) (if c1 t c2))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (x y and or)
-      (if (and (eq x nil) (eq y nil)) t
-      (if (or  (eq x nil) (eq y nil)) nil
-      (if (eq (car x) (car y))
-          ((u u) (cdr x) (cdr y) and or)
-          nil))))))
+ ((lambda (u) (u u)) (lambda (u) (lambda (x y and or)
+    (if (and (eq x nil) (eq y nil)) t
+    (if (or  (eq x nil) (eq y nil)) nil
+    (if (eq (car x) (car y))
+        ((u u) (cdr x) (cdr y) and or) nil))))))
  (quote (x a m a x)))
  

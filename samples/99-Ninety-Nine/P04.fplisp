@@ -1,7 +1,7 @@
-(((lambda (u) (u u))
-  (lambda (u)
-    (lambda (l)
-      (if (eq l nil) 0
-          (+ 1 ((u u) (cdr l)))))))
+((lambda (length s)
+   (length s))
+ ((lambda (u) (u u)) (lambda (u) (lambda (l)
+    (if (eq l nil) 0
+        (+ 1 ((u u) (cdr l)))))))
  (quote (a b c d e)))
 

@@ -1,4 +1,6 @@
-(((lambda (u) (u u))
+((lambda (element-at s n)
+   (element-at s n))
+ ((lambda (u) (u u))
   (lambda (u)
     (lambda (l k)
       (if (eq l nil) nil
