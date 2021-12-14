@@ -2,9 +2,9 @@
    ((lambda x x)
     (dec2binlist 8) (dec2binlist 15) (dec2binlist 16) (dec2binlist 65535)))
  (lambda (n)
-   ((lambda (unfoldl)
+   ((lambda (unfoldr)
       ((lambda x x) n
-       (unfoldl (lambda (x) (eq x 0))
+       (unfoldr (lambda (x) (eq x 0))
                 (lambda (x) (% x 2))
                 (lambda (x) (/ x 2))
                 n nil)))
