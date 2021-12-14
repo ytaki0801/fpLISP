@@ -8,10 +8,10 @@
 
 ;;;; Define built-in functions
 (defparameter fp_builtins
-  '((|cons| . cons) (|car| . car) (|cdr| . cdr)
-    (|eq| . eq) (|atom| . atom) (|lt| . <)
+  `((|cons| . cons) (|car| . car) (|cdr| . cdr)
+    (|eq| . equalp) (|atom| . atom) (|lt| . <)
     (+ . +) (- . -) (* . *) (% . rem)
-    (/ . (lambda (x y) (float (/ x y))))))
+    (/ . ,(lambda (x y) (multiple-value-bind (q r) (truncate x y) q)))))
 
 ;;;; Apply a function with arguments for a lambda expression
 ;;;; and built-in functions

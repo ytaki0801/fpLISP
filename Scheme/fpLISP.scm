@@ -17,7 +17,7 @@
 (define fp_builtins
   `((cons . ,cons) (car . ,car) (cdr . ,cdr) (+ . ,+) (- . ,-) (* . ,*)
     (eq . ,fp_eq) (atom . ,(lambda (x) (not (pair? x)))) (lt . ,<)
-    (/ . ,(lambda (x y) (exact->inexact (/ x y)))) (% . ,remainder)))
+    (/ . ,(lambda (x y) (quotient x y))) (% . ,remainder)))
    
 ;;;; Apply a function with arguments for a lambda expression
 ;;;; and built-in functions

@@ -127,7 +127,7 @@ const fp_builtins = {
   "+"    : (v) => String(Number(car(v)) + Number(cadr(v))),
   "-"    : (v) => String(Number(car(v)) - Number(cadr(v))),
   "*"    : (v) => String(Number(car(v)) * Number(cadr(v))),
-  "/"    : (v) => String(Number(car(v)) / Number(cadr(v))),
+  "/"    : (v) => String(Number(car(v)) / Number(cadr(v)) | 0),
   "%"    : (v) => String(Number(car(v)) % Number(cadr(v))),
   "lt"   : (v) => Number(car(v)) < Number(cadr(v))
 };

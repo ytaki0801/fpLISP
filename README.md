@@ -14,8 +14,8 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `if` as conditional operator. The false-clause must be provided.
 	* `quote`
 * Built-in functions for list and number processing
-	* `cons` `car` `cdr` `atom` for lists
-	* `+` `-` `*` `/` `%` for numbers
+	* `cons`, `car`, `cdr` and `atom` for lists
+	* `+`, `-`, `*`, `/` as quotient and `%` for numbers
 	* `lt` as < for numbers
 	* `eq` as = for both lists and numbers
 * Boolean values
