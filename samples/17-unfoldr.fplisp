@@ -6,7 +6,7 @@
       ((lambda x x) n
        (unfoldl (lambda (x) (eq x 0))
                 (lambda (x) (% x 2))
-                (lambda (x) (/ (- x (% x 2)) 2))
+                (lambda (x) (/ x 2))
                 n nil)))
     ((lambda (u) (u u)) (lambda (u) (lambda (endp conv gen i r)
        (if (endp i) r
