@@ -17,8 +17,9 @@
 * `15-foldr.fplisp`: append, reverse, map and filter by foldr
 * `16-foldl.fplisp`: append, reverse, map and filter by foldl
 * `17-unfoldr.fplisp`: Translate from decimal to binary by unfoldr
-* `18-unfoldl.fplisp`: Generate `range` and fibonacci sequences by unfoldl
+* `18-unfoldl.fplisp`: Generate range and fibonacci sequences by unfoldl
 * `19-quotient-test.fplisp: Must be `(33 -33)` on fpLISP
+* `20-find-tail.fplisp: find, any, member and assoc by find-tail
 
 * `99-Ninety-Nine`: Ninety-Nine Problems derived from [L-99](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html)
 
