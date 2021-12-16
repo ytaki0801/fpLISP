@@ -1,0 +1,22 @@
+((lambda (find-tail find any member assoc)
+   ((lambda x x)
+    (find 'b '(a b c b e) find-tail)
+    (find 'z '(a b c b e) find-tail)
+    (any 'b '(a b c b e) find-tail)
+    (any 'z '(a b c b e) find-tail)
+    (member 'b '(a b c b e) find-tail)
+    (assoc 'b '((a . 1) (b . 2) (c . 3) (b . 4) (e . 5)) find-tail)))
+ ((lambda (u) (u u)) (lambda (u) (lambda (p x)
+    (if (eq x nil) nil
+    (if (p (car x)) x
+        ((u u) p (cdr x)))))))
+ (lambda (k x find-tail)
+   ((lambda (r) (if (eq r nil) nil (car r)))
+    (find-tail (lambda (x) (eq k x)) x)))
+ (lambda (k x find-tail)
+   (if (eq (find-tail (lambda (x) (eq k x)) x) nil) nil t))
+ (lambda (k x find-tail)
+   (find-tail (lambda (x) (eq k x)) x))
+ (lambda (k al find-tail)
+   (car (find-tail (lambda (x) (eq (car x) k)) al))))
+
