@@ -16,8 +16,8 @@
 * `14-quine.fplisp`: Generate the quine code for fpLISP
 * `15-foldr.fplisp`: append, reverse, map and filter by foldr
 * `16-foldl.fplisp`: append, reverse, map and filter by foldl
-* `17-unfoldr.fplisp`: Translate from decimal to binary by unfoldr
-* `18-unfoldl.fplisp`: Generate range and fibonacci sequences by unfoldl
+* `17-unfold-pfgseed.fplisp`: Generate binary, range and fibonacci sequences by Unfold similar to Scheme SRFI-1 unfold-right
+* `18-unfold-fseed.fplisp`: Generate binary, range and fibonacci sequences by Unfold similar to Haskell Data.List unfoldr
 * `19-quotient-test.fplisp: Must be `(33 -33)` on fpLISP
 * `20-find-tail.fplisp: find, any, member and assoc by find-tail
 

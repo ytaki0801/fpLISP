@@ -1,0 +1,28 @@
+((lambda (dec2binlist range fib unfold)
+   ((lambda x x)
+    (dec2binlist 8 unfold) (dec2binlist 15 unfold) (dec2binlist 16 unfold)
+    (range 0 10 1 unfold) (range 1 20 3 unfold) (fib 1000 unfold)))
+ (lambda (n unfold)
+   ((lambda x x) n
+      (unfold (lambda (x) (eq x 0))
+              (lambda (x) (% x 2))
+              (lambda (x) (/ x 2))
+              n)))
+ (lambda (n1 n2 d unfold)
+   (unfold (lambda (x) (eq x nil)) car cdr
+   (unfold (lambda (x) (lt (- n2 1) x))
+           (lambda (x) x)
+           (lambda (x) (+ x d))
+           n1)))
+ (lambda (n unfold)
+   (unfold (lambda (x) (eq x nil)) car cdr
+   (unfold (lambda (x) (lt n (car x))) car
+           (lambda (x) (cons (cdr x) (+ (car x) (cdr x))))
+           (cons 0 1))))
+ (lambda a
+   ((lambda (p f g seed i)
+      (((lambda (u) (u u)) (lambda (u) (lambda (e r)
+          (if (p e) r ((u u) (g e) (cons (f e) r))))))
+       seed (if (eq i nil) i (car i))))
+    (car a) (car (cdr a)) (car (cdr (cdr a))) (car (cdr (cdr (cdr a))))
+    (cdr (cdr (cdr (cdr a)))))))
