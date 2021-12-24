@@ -1,0 +1,9 @@
+(unfold
+  (lambda (x)
+    (if (eq x nil) nil
+        (cons (cdr x)
+              (if (eq (% (car x) 15) 0) 'FizzBuzz
+              (if (eq (% (car x)  3) 0) 'Fizz
+              (if (eq (% (car x)  5) 0) 'Buzz (car x)))))))
+  (unfold (lambda (x) (if (lt 30 x) nil (cons (+ x 1) x))) 1))
+

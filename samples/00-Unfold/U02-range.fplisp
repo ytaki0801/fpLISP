@@ -1,0 +1,3 @@
+(unfold (lambda (x) (if (eq x nil) nil (cons (cdr x) (car x))))
+        (unfold (lambda (x) (if (lt 20 x) nil (cons (+ x 3) x))) 0))
+

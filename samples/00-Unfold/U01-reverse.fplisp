@@ -1,0 +1,3 @@
+(unfold (lambda (x) (if (eq x nil) nil (cons (cdr x) (car x))))
+        (quote (a b c d e)))
+

@@ -1,0 +1,8 @@
+(unfold
+  (lambda (x)
+    (if (eq x nil) nil
+        (cons (cdr x)
+              (unfold (lambda (x) (if (eq x 0) nil (cons (/ x 2) (% x 2))))
+                      (car x)))))
+  (unfold (lambda (x) (if (lt 9 x) nil (cons (+ x 1) x))) 0))
+

@@ -1,0 +1,4 @@
+(fold (lambda (r x) (cons x r)) nil
+      (fold (lambda (r x y) (cons (cons x y) r)) nil
+            (quote (a b c)) (quote (1 2 3))))
+

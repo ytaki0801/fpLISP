@@ -508,6 +508,31 @@ fp_apply () {
 CNUM=0
 STACKNUM=0
 
+fp_read "(quote ( \
+(unfold .                                              \
+ (lambda a                                             \
+   ((lambda (f seed i)                                 \
+      (((lambda (u) (u u)) (lambda (u) (lambda (e r)   \
+          (if (eq e nil) r                             \
+              ((u u) (f (car e)) (cons (cdr e) r)))))) \
+       (f seed) (if (eq i nil) nil (car i))))          \
+    (car a) (car (cdr a)) (cdr (cdr a)))))             \
+(fold .                                                \
+ (lambda x                                             \
+   ((lambda (f i0 a0 b0)                               \
+      (((lambda (u) (u u)) (lambda (u) (lambda (i a b) \
+          (if (eq a nil) i                             \
+          (if (eq b nil)                               \
+              ((u u) (f i (car a)) (cdr a) b)          \
+              ((u u) (f i (car a) (car b))             \
+                     (cdr a) (cdr b)))))))             \
+       i0 a0 (if (eq b0 nil) nil (car b0))))           \
+    (car x) (car (cdr x)) (car (cdr (cdr x)))          \
+    (cdr (cdr (cdr x))))))                             \
+))"
+fp_eval "$FPREADR" nil
+FPENVINIT="$FPEVALR"
+
 FPREADCODE=""
 while read fprdcd
 do
@@ -518,6 +543,6 @@ do
 done
 
 fp_read "$FPREADCODE"
-fp_eval "$FPREADR" nil
+fp_eval "$FPREADR" "$FPENVINIT"
 fp_display "$FPEVALR" && printf "\n"
 

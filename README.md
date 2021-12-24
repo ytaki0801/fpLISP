@@ -21,6 +21,9 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Boolean values
 	* `t` as true
 	* `nil` as false and empty set
+* Pre-defined functions for list processing (now only on `fpLISP.sh`)
+	* `fold` similer to [Prelude.foldl in Haskell](http://zvon.org/other/haskell/Outputprelude/foldl_f.html)
+	* `unfold` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)
 
 ## Sample codes
 
