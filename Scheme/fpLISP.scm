@@ -26,12 +26,13 @@
          (cond ((eq? (car f) 'lambda)
                 ; Eval body of a lambda expression in local env
                 ; made from variables, values and closure env
-                (let ((lvars (cadr f)))
+                (let ((lvars (cadr f))
+                      (lenvs (if (null? (cdddr f)) '() (cadddr f))))
                   (fp_eval
                     (caddr f)
                     (append (cond ((pair? lvars) (map cons lvars v))
                                   (else `(,(cons lvars v))))
-                            (cadddr f)))))
+                            lenvs))))
                (else #f)))
         (else (apply (cdr (assq f fp_builtins)) v))))
 
@@ -66,6 +67,27 @@
         ((pair? s) (display "(") (fp_strcons s) (display ")"))
         (else (display s))))
 
-(fp_display (fp_eval (read) '()))
+(define INITENV
+  (quote (
+    (unfold . (lambda a
+                ((lambda (f seed i)
+                   (((lambda (u) (u u)) (lambda (u) (lambda (e r)
+                       (if (eq e nil) r
+                           ((u u) (f (car e)) (cons (cdr e) r))))))
+                    (f seed) (if (eq i nil) nil (car i))))
+                 (car a) (car (cdr a)) (cdr (cdr a)))))
+    (fold .   (lambda x
+                ((lambda (f i0 a0 b0)
+                   (((lambda (u) (u u)) (lambda (u) (lambda (i a b)
+                       (if (eq a nil) i
+                       (if (eq b nil)
+                           ((u u) (f i (car a)) (cdr a) b)
+                           ((u u) (f i (car a) (car b))
+                                  (cdr a) (cdr b)))))))
+                    i0 a0 (if (eq b0 nil) nil (car b0))))
+                 (car x) (car (cdr x)) (car (cdr (cdr x)))
+                 (cdr (cdr (cdr x)))))))))
+
+(fp_display (fp_eval (read) INITENV))
 (newline)
 

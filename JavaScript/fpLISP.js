@@ -138,7 +138,12 @@ function fp_apply(f, v) {
   } else {
     const lvars = cadr(f);
     const lbody = caddr(f);
-    const lenvs = cadddr(f);
+    let lenvs;
+    if (fp_null(cdr(cdr(cdr(f))))) {
+      lenvs = null;
+    } else {
+      lenvs = cadddr(f);
+    }
     if (atom(lvars))
       if (fp_null(lvars)) return fp_eval(lbody, lenvs);
       else return fp_eval(lbody, fp_append(cons(cons(lvars, v), null), lenvs));
@@ -176,7 +181,30 @@ function fp_eval(e, a) {
 
 
 // REP (no Loop): fp_rep
-function fp_rep(e) { return fp_string(fp_eval(fp_read(e), fp_read("()"))); }
+const ENVINIT = "(quote ( \
+(unfold .                                              \
+ (lambda a                                             \
+   ((lambda (f seed i)                                 \
+      (((lambda (u) (u u)) (lambda (u) (lambda (e r)   \
+          (if (eq e nil) r                             \
+              ((u u) (f (car e)) (cons (cdr e) r)))))) \
+       (f seed) (if (eq i nil) nil (car i))))          \
+    (car a) (car (cdr a)) (cdr (cdr a)))))             \
+(fold .                                                \
+ (lambda x                                             \
+   ((lambda (f i0 a0 b0)                               \
+      (((lambda (u) (u u)) (lambda (u) (lambda (i a b) \
+          (if (eq a nil) i                             \
+          (if (eq b nil)                               \
+              ((u u) (f i (car a)) (cdr a) b)          \
+              ((u u) (f i (car a) (car b))             \
+                     (cdr a) (cdr b)))))))             \
+       i0 a0 (if (eq b0 nil) nil (car b0))))           \
+    (car x) (car (cdr x)) (car (cdr (cdr x)))          \
+    (cdr (cdr (cdr x))))))                             \
+))";
+const envinit = fp_eval(fp_read(ENVINIT), null);
+function fp_rep(e) { return fp_string(fp_eval(fp_read(e), envinit)); }
 
 // Script file execution in Node.js
 if (process.argv.length == 3) {

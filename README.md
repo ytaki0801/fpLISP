@@ -21,13 +21,13 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Boolean values
 	* `t` as true
 	* `nil` as false and empty set
-* Pre-defined functions for list processing (now only in POSIX-Shell and C)
+* Pre-defined functions for list processing
 	* `fold` similer to [Prelude.foldl in Haskell](http://zvon.org/other/haskell/Outputprelude/foldl_f.html)
 	* `unfold` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)
 
 ## Sample codes
 
-fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
+fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur, except pre-defined functions `fold` or `unfold`. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
 
 * Append two lists
 ```
@@ -55,6 +55,20 @@ fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax
     n 0 1)))
 
 => (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946)
+```
+
+* `fold` example
+```
+(fold - 0 (quote (1 2 3)))
+
+=> -6
+```
+
+* `unfold` example
+```
+(unfold (lambda (x) (if (lt x 0) nil (cons (- x 1) x))) 9)
+
+=> (0 1 2 3 4 5 6 7 8 9)
 ```
 
 

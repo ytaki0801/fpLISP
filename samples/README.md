@@ -1,5 +1,8 @@
 # Sample codes for fpLISP
 
+* `00-Fold`: `fold` examples
+* `00-Unfold`: `unfold` examples
+
 * `01-let-equiv.fplisp`: Show equivalence `let` by `lambda`
 * `02-factorial.fplisp`: Show an example of recursion by U combinator
 * `03-fibonacci.fplisp`: Generate Fibonacci sequence until 21th as a list
