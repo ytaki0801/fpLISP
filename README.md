@@ -59,9 +59,9 @@ fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax
 
 * `fold` example
 ```
-(fold - 0 (quote (1 2 3)))
+(fold - 0 (quote (1 2 3 4 5 6 7 8 9)))
 
-=> -6
+=> -45
 ```
 
 * `unfold` example
