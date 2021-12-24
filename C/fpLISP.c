@@ -332,14 +332,40 @@ node_t fp_eval(node_t e, node_t a)
 
 // eval_string
 
+const char *INITENV = "(quote ("
+"(unfold .                                              "
+" (lambda a                                             "
+"   ((lambda (f seed i)                                 "
+"      (((lambda (u) (u u)) (lambda (u) (lambda (e r)   "
+"          (if (eq e nil) r                             "
+"              ((u u) (f (car e)) (cons (cdr e) r)))))) "
+"       (f seed) (if (eq i nil) nil (car i))))          "
+"    (car a) (car (cdr a)) (cdr (cdr a)))))             "
+"(fold .                                                "
+" (lambda x                                             "
+"   ((lambda (f i0 a0 b0)                               "
+"      (((lambda (u) (u u)) (lambda (u) (lambda (i a b) "
+"          (if (eq a nil) i                             "
+"          (if (eq b nil)                               "
+"              ((u u) (f i (car a)) (cdr a) b)          "
+"              ((u u) (f i (car a) (car b))             "
+"                     (cdr a) (cdr b)))))))             "
+"       i0 a0 (if (eq b0 nil) nil (car b0))))           "
+"    (car x) (car (cdr x)) (car (cdr (cdr x)))          "
+"    (cdr (cdr (cdr x))))))                             "
+"))";
+
 void fp_eval_string(char *s)
 {
-  char *lr_s[SSTR_MAX];;
-  int fp_len;
+  char *lr_s_e[SSTR_MAX];;
+  int fp_len_e = fp_lex(INITENV, lr_s_e) - 1;
+  node_t rs_e = fp_syn(lr_s_e, &fp_len_e);
+  node_t r_e = fp_eval(rs_e, NULL);
 
-  fp_len = fp_lex(s, lr_s) - 1;
+  char *lr_s[SSTR_MAX];;
+  int fp_len = fp_lex(s, lr_s) - 1;
   node_t rs = fp_syn(lr_s, &fp_len);
-  node_t r = fp_eval(rs, NULL);
+  node_t r = fp_eval(rs, r_e);
 
   fp_eval_retval[0] = '\0';
   fp_string(r);
