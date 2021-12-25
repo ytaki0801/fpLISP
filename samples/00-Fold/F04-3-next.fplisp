@@ -1,0 +1,8 @@
+(car
+  ((fold
+     (lambda (acc x)
+       (if (eq (car x) (quote b))
+           (lambda () (cons x acc)) acc))
+     nil
+     (quote ((a . 1) (b . 2) (c . 3) (b . 4) (e . 5))))))
+
