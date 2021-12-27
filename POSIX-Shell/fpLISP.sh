@@ -230,6 +230,13 @@ caddr ()
   eval CADDRR="\$CAR${CADDR_CDDRR%%.*}"
 }
 
+cdddr ()
+{
+  eval CDDDR_CDRR="\$CDR${1%%.*}"
+  eval CDDDR_CDDRR="\$CDR${CDDDR_CDRR%%.*}"
+  eval CDDDRR="\$CDR${CDDDR_CDDRR%%.*}"
+}
+
 cadddr ()
 {
   eval CADDDR_CDRR="\$CDR${1%%.*}"
@@ -332,7 +339,8 @@ fp_lookup () {
     FPLOOKUPR="$1"
     return
   ;;esac
-  fp_assq "$1" "$2"
+  fp_append "$2" "$FPENVINIT"
+  fp_assq "$1" "$FPAPPENDR"
   fp_null "$FPASSQR"
   case "$FPNULLR" in (t)
     FPLOOKUPR=nil
@@ -439,7 +447,13 @@ fp_eval () {
       ;;(*)
         cadr   "$FPEVALEFUNC" && FPEVALLVARS="$CADRR"
         caddr  "$FPEVALEFUNC" && FPEVALLBODY="$CADDRR"
-        cadddr "$FPEVALEFUNC" && FPEVALLENVS="$CADDDRR"
+        cdddr "$FPEVALEFUNC"
+        fp_null "$CDDDRR"
+        case "$FPNULLR" in (t)
+          FPEVALLENVS=nil
+        ;;(*)
+          cadddr "$FPEVALEFUNC" && FPEVALLENVS="$CADDDRR"
+        ;;esac
         FPEVALARG1="$FPEVALLBODY"
 
         fp_null "$FPEVALLVARS"
@@ -543,6 +557,6 @@ do
 done
 
 fp_read "$FPREADCODE"
-fp_eval "$FPREADR" "$FPENVINIT"
+fp_eval "$FPREADR" nil
 fp_display "$FPEVALR" && printf "\n"
 

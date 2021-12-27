@@ -232,6 +232,7 @@ int fp_isinteger(node_t t)
   return i == strlen(str) ? 1 : 0;
 }
 
+node_t initenv;
 node_t fp_lookup(node_t t, node_t a)
 {
   if      (eq(t, FP_T))   return FP_T;
@@ -242,7 +243,7 @@ node_t fp_lookup(node_t t, node_t a)
         || eq(t, FP_MOD)  || eq(t, FP_LTN)  || fp_isinteger(t))
     return t;
   else
-    return fp_assq(t, a);
+    return fp_assq(t, fp_append(a, initenv));
 }
 
 node_t fp_bool2node(int e)
@@ -360,12 +361,12 @@ void fp_eval_string(char *s)
   char *lr_s_e[SSTR_MAX];;
   int fp_len_e = fp_lex(INITENV, lr_s_e) - 1;
   node_t rs_e = fp_syn(lr_s_e, &fp_len_e);
-  node_t r_e = fp_eval(rs_e, NULL);
+  initenv = fp_eval(rs_e, NULL);
 
   char *lr_s[SSTR_MAX];;
   int fp_len = fp_lex(s, lr_s) - 1;
   node_t rs = fp_syn(lr_s, &fp_len);
-  node_t r = fp_eval(rs, r_e);
+  node_t r = fp_eval(rs, NULL);
 
   fp_eval_retval[0] = '\0';
   fp_string(r);

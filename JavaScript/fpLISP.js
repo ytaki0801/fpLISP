@@ -156,7 +156,7 @@ function fp_lookup(t, a) {
   if      (eq(t, "t"))   return true;
   else if (eq(t, "nil")) return false;
   else if (Object.keys(fp_builtins).includes(t) || !isNaN(t)) return t;
-  else return fp_assq(t, a);
+  else return fp_assq(t, fp_append(a, envinit));
 }
 
 function fp_eargs(v, a) {
@@ -204,7 +204,7 @@ const ENVINIT = "(quote ( \
     (cdr (cdr (cdr x))))))                             \
 ))";
 const envinit = fp_eval(fp_read(ENVINIT), null);
-function fp_rep(e) { return fp_string(fp_eval(fp_read(e), envinit)); }
+function fp_rep(e) { return fp_string(fp_eval(fp_read(e), fp_read("()"))); }
 
 // Script file execution in Node.js
 if (process.argv.length == 3) {

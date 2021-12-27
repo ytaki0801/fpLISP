@@ -13,6 +13,28 @@
           ((and (member x T)   (member y T)    #t))
           (else (eq? x y)))))
 
+;;;; Pre-defined functions
+(define INITENV
+  (quote (
+    (unfold . (lambda a
+                ((lambda (f seed i)
+                   (((lambda (u) (u u)) (lambda (u) (lambda (e r)
+                       (if (eq e nil) r
+                           ((u u) (f (car e)) (cons (cdr e) r))))))
+                    (f seed) (if (eq i nil) nil (car i))))
+                 (car a) (car (cdr a)) (cdr (cdr a)))))
+    (fold .   (lambda x
+                ((lambda (f i0 a0 b0)
+                   (((lambda (u) (u u)) (lambda (u) (lambda (i a b)
+                       (if (eq a nil) i
+                       (if (eq b nil)
+                           ((u u) (f i (car a)) (cdr a) b)
+                           ((u u) (f i (car a) (car b))
+                                  (cdr a) (cdr b)))))))
+                    i0 a0 (if (eq b0 nil) nil (car b0))))
+                 (car x) (car (cdr x)) (car (cdr (cdr x)))
+                 (cdr (cdr (cdr x)))))))))
+
 ;;;; Define built-in functions
 (define fp_builtins
   `((cons . ,cons) (car . ,car) (cdr . ,cdr) (+ . ,+) (- . ,-) (* . ,*)
@@ -40,7 +62,7 @@
 (define (fp_lookup t a)
   (cond ((or (member t (map car fp_builtins))
              (number? t) (eq? t 't) (eq? t 'nil)) t)
-        (else (cdr (assq t a)))))
+        (else (cdr (assq t (append a INITENV))))))
 
 ;;;; Eval S-expression with local environment
 (define (fp_eval e a)
@@ -67,27 +89,6 @@
         ((pair? s) (display "(") (fp_strcons s) (display ")"))
         (else (display s))))
 
-(define INITENV
-  (quote (
-    (unfold . (lambda a
-                ((lambda (f seed i)
-                   (((lambda (u) (u u)) (lambda (u) (lambda (e r)
-                       (if (eq e nil) r
-                           ((u u) (f (car e)) (cons (cdr e) r))))))
-                    (f seed) (if (eq i nil) nil (car i))))
-                 (car a) (car (cdr a)) (cdr (cdr a)))))
-    (fold .   (lambda x
-                ((lambda (f i0 a0 b0)
-                   (((lambda (u) (u u)) (lambda (u) (lambda (i a b)
-                       (if (eq a nil) i
-                       (if (eq b nil)
-                           ((u u) (f i (car a)) (cdr a) b)
-                           ((u u) (f i (car a) (car b))
-                                  (cdr a) (cdr b)))))))
-                    i0 a0 (if (eq b0 nil) nil (car b0))))
-                 (car x) (car (cdr x)) (car (cdr (cdr x)))
-                 (cdr (cdr (cdr x)))))))))
-
-(fp_display (fp_eval (read) INITENV))
+(fp_display (fp_eval (read) '()))
 (newline)
 
