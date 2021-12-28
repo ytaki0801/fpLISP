@@ -6,7 +6,7 @@ This project is aimed to define a minimum specification of LISP interpreter impl
 
 ## Current Language Specification
 
-It is mostly a subset of Scheme except built-in function naming convention and lack of global environment. The latter means that just one nested S-expression is supposed to be run. See each language dierctory for reference implementations.
+It is mostly a subset of Scheme except built-in and pre-defined function naming convention and lack of global environment. The latter means that just one nested S-expression is supposed to be run. See each language dierctory for reference implementations.
 
 * S-expressions are accepted with parenthesis enclosing, space separating and dot notation for cdr of conscells in quoting lists and displaying values.
 * Special forms
@@ -25,11 +25,11 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `fold` similer to [Prelude.foldl in Haskell](http://zvon.org/other/haskell/Outputprelude/foldl_f.html)
 	* `unfold` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)
 	* `unfold-stream` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html) as a stream generator
-	* `take-stream` to get specific number of elements by `unfold-stream`
+	* `take-stream` to get specific number of head elements by `unfold-stream`
 
 ## Sample codes
 
-fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur, except pre-defined functions `fold` or `unfold`. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
+fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax so [fixed-point combinators](https://en.wikipedia.org/wiki/Fixed-point_combinator) will be used to recur, except pre-defined functions. The following sample codes are using U combinators. See `samples` directory for more sample codes, including [Ninety-Nine Problems](https://www.ic.unicamp.br/~meidanis/courses/mc336/2006s2/funcional/L-99_Ninety-Nine_Lisp_Problems.html).
 
 * Append two lists
 ```
@@ -73,7 +73,7 @@ fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax
 => (0 1 2 3 4 5 6 7 8 9)
 ```
 
-* `unfold-stream` and `take-stream` example
+* `unfold-stream` and `take-stream` examples
 ```
 (take-stream (unfold (lambda (x) (cons (- x 1) x)) 9) 10)
 
@@ -82,7 +82,8 @@ fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax
 ```
 (take-stream
  (unfold-stream
-  (lambda (x) (cons (car x) (cons (cdr x) (+ (car x) (cdr x))))) '(0 . 1))
+  (lambda (x) (cons (car x) (cons (cdr x) (+ (car x) (cdr x)))))
+  (cons 0 . 1))
  18)
 
 => (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597)

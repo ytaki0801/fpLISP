@@ -1,6 +1,6 @@
 (take-stream
  (unfold-stream
   (lambda (x) (cons (car x) (cons (cdr x) (+ (car x) (cdr x)))))
-  '(0 . 1))
+  (cons 0 1))
  18)
 
