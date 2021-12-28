@@ -1,0 +1,2 @@
+(take-stream (unfold-stream (lambda (x) (cons x (+ x 2))) 0) 9)
+

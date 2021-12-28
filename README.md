@@ -24,6 +24,8 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 * Pre-defined functions for list processing
 	* `fold` similer to [Prelude.foldl in Haskell](http://zvon.org/other/haskell/Outputprelude/foldl_f.html)
 	* `unfold` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)
+	* `unfold-stream` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html) as a stream generator
+        * `take-stream` to get specific number of elements by `unfold-stream`
 
 ## Sample codes
 
@@ -69,6 +71,21 @@ fpLISP has `lambda` with lexical-scope, no global environment and no loop syntax
 (unfold (lambda (x) (if (lt x 0) nil (cons (- x 1) x))) 9)
 
 => (0 1 2 3 4 5 6 7 8 9)
+```
+
+* `unfold-stream` and `take-stream` example
+```
+(take-stream (unfold (lambda (x) (cons (- x 1) x)) 9) 10)
+
+=> (0 1 2 3 4 5 6 7 8 9)
+```
+```
+(take-stream
+ (unfold-stream
+  (lambda (x) (cons (car x) (cons (cdr x) (+ (car x) (cdr x))))) '(0 . 1))
+ 18)
+
+=> (0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597)
 ```
 
 

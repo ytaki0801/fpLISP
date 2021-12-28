@@ -202,6 +202,17 @@ const ENVINIT = "(quote ( \
        i0 a0 (if (eq b0 nil) nil (car b0))))           \
     (car x) (car (cdr x)) (car (cdr (cdr x)))          \
     (cdr (cdr (cdr x))))))                             \
+(unfold-stream .                                         \
+ (lambda (f seed)                                        \
+   (((lambda (u) (u u)) (lambda (u) (lambda (e)          \
+       (cons (car e) (lambda () ((u u) (f (cdr e)))))))) \
+    (f seed))))                                          \
+(take-stream .                                           \
+ (lambda (s k)                                           \
+   (((lambda (u) (u u)) (lambda (u) (lambda (s k)        \
+       (if (eq k 0) nil                                  \
+           (cons (car s) ((u u) ((cdr s)) (- k 1)))))))  \
+    s k)))                                               \
 ))";
 const envinit = fp_eval(fp_read(ENVINIT), null);
 function fp_rep(e) { return fp_string(fp_eval(fp_read(e), fp_read("()"))); }
