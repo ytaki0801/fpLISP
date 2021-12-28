@@ -25,7 +25,7 @@ It is mostly a subset of Scheme except built-in function naming convention and l
 	* `fold` similer to [Prelude.foldl in Haskell](http://zvon.org/other/haskell/Outputprelude/foldl_f.html)
 	* `unfold` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html)
 	* `unfold-stream` similer to [Data.Sequence.unfoldl in Haskell](https://hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Sequence.html) as a stream generator
-        * `take-stream` to get specific number of elements by `unfold-stream`
+	* `take-stream` to get specific number of elements by `unfold-stream`
 
 ## Sample codes
 
