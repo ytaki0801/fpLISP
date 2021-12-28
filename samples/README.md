@@ -2,6 +2,7 @@
 
 * `00-Fold`: `fold` examples
 * `00-Unfold`: `unfold` examples
+* `00-Stream`: `unfold-stream` and `take-stream` examples
 
 * `01-let-equiv.fplisp`: Show equivalence `let` by `lambda`
 * `02-factorial.fplisp`: Show an example of recursion by U combinator
