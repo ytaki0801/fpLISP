@@ -217,9 +217,3 @@ const ENVINIT = "(quote ( \
 const envinit = fp_eval(fp_read(ENVINIT), null);
 function fp_rep(e) { return fp_string(fp_eval(fp_read(e), fp_read("()"))); }
 
-// Script file execution in Node.js
-if (process.argv.length == 3) {
-  const src = require("fs").readFileSync(process.argv[2]).toString();
-  console.log(fp_rep(src));
-}
-

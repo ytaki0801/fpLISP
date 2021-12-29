@@ -11,18 +11,10 @@
     <a href="https://github.com/ytaki0801/fpLISP" target="_top">fpLISP</a>
     <form name="form1">
       <textarea id ="secodes" name="estrings" value="1" cols="80" rows="24">
-((lambda (rev fib)
-   (rev (fib 21 0 1 nil) nil))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (x y)
-      (if (eq x nil) y
-           ((u u) (cdr x) (cons (car x) y))))))
- ((lambda (u) (u u))
-  (lambda (u)
-    (lambda (n a b r)
-      (if (eq n 0) (cons a r)
-           ((u u) (- n 1) b (+ a b) (cons a r)))))))
+(take-stream
+  (unfold-stream (lambda (x) (cons (car x) (cons (cdr x) (+ (car x) (cdr x)))))
+                 (cons 0 1))
+  22)
 </textarea>
     </form>
     <input type="button" onclick="rep()" value="eval">
